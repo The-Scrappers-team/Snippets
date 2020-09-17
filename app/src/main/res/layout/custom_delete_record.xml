@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<!-- The Saving Dialog Box -->
+<!-- Used for all Records-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/alrt_back"
+    android:layoutDirection="ltr"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:layout_margin="5dp"
+    >
+    <!--       Buttons    -->
+    <!--   Material style better than Holo-->
+
+
+
+        <!--  Cancel Button      -->
+        <Button
+            android:padding="4dp"
+            style="@android:style/Widget.Material.Button.Borderless"
+            android:id="@+id/deleteBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/delete"
+            android:textColor="?attr/textcolor"
+            android:background="@drawable/box"
+            android:layout_margin="5dp"/>
+
+        <!--   "OK"  button  -->
+
+        <Button
+            android:paddingEnd="8dp"
+            android:paddingStart="8dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            style="@android:style/Widget.Material.Button.Borderless"
+            android:id="@+id/cancelBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel"
+            android:textColor="?attr/textcolor"
+            android:background="@drawable/box"
+            android:layout_margin="5dp"/>
+    </LinearLayout>

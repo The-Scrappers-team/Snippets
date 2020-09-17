@@ -1,0 +1,272 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:background="?attr/cardbackgroundcolor"
+    android:layout_gravity="bottom">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <HorizontalScrollView
+        android:id="@+id/horizontal"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:layout_marginTop="32dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="8dp"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageButton
+                android:id="@+id/black"
+                android:layout_margin="8dp"
+                android:layout_width="@dimen/brush_color_ImageSize"
+                android:layout_height="@dimen/brush_color_ImageSize"
+                android:background="@drawable/circle_border_white"
+                android:backgroundTintMode="screen"
+                android:backgroundTint="@color/text_black"
+                />
+            <ImageButton
+                android:id="@+id/blue"
+                android:layout_margin="8dp"
+                android:layout_width="@dimen/brush_color_ImageSize"
+                android:layout_height="@dimen/brush_color_ImageSize"
+                android:background="@drawable/circle_border_white"
+                android:backgroundTintMode="screen"
+                android:backgroundTint="@color/blue"
+                />
+            <ImageButton
+                android:id="@+id/red"
+                android:layout_margin="8dp"
+                android:layout_width="@dimen/brush_color_ImageSize"
+                android:layout_height="@dimen/brush_color_ImageSize"
+                android:background="@drawable/circle_border_white"
+                android:backgroundTintMode="screen"
+                android:backgroundTint="@color/text_red_a400"
+                />
+            <ImageButton
+                android:id="@+id/yellow"
+                android:layout_margin="8dp"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:background="@drawable/circle_border_white"
+                android:backgroundTintMode="screen"
+                android:backgroundTint="@color/aboutYellow"
+                />
+            <ImageButton
+                android:id="@+id/green"
+                android:layout_margin="8dp"
+                android:layout_width="@dimen/brush_color_ImageSize"
+                android:layout_height="@dimen/brush_color_ImageSize"
+                android:background="@drawable/circle_border_white"
+                android:backgroundTintMode="screen"
+                android:backgroundTint="@color/text_green_a400"
+                />
+            <ImageButton
+                android:id="@+id/grey"
+                android:layout_margin="8dp"
+                android:layout_width="@dimen/brush_color_ImageSize"
+                android:layout_height="@dimen/brush_color_ImageSize"
+                android:background="@drawable/circle_border_white"
+                android:backgroundTintMode="screen"
+                android:backgroundTint="@color/grey"
+                />
+            <ImageButton
+                android:id="@+id/pink"
+                android:layout_margin="8dp"
+                android:layout_width="@dimen/brush_color_ImageSize"
+                android:layout_height="@dimen/brush_color_ImageSize"
+                android:background="@drawable/circle_border_white"
+                android:backgroundTintMode="screen"
+                android:backgroundTint="@color/pink"
+
+                />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/horizontal"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="80dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="8dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+
+                <Button
+                    android:id="@+id/save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:tag="save"
+                    android:text="@string/save" />
+
+                <Button
+                    android:id="@+id/emboss"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:tag="emboss"
+                    android:text="@string/emboss" />
+
+                <Button
+                    android:id="@+id/blur"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:tag="blur"
+                    android:text="@string/blur" />
+
+                <Button
+                    android:id="@+id/normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:tag="normal"
+                    android:text="@string/normal" />
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <FrameLayout
+            android:id="@+id/frame_seek"
+            android:layout_width="40dp"
+            android:layout_height="150dp"
+            android:layout_alignParentEnd="true">
+
+
+            <SeekBar
+                android:id="@+id/strokeControl"
+                android:layout_width="146dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center"
+                android:rotation="270" />
+
+
+        </FrameLayout>
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/sharePainting"
+            android:layout_width="33dp"
+            android:layout_height="39dp"
+            android:layout_below="@+id/frame_seek"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="47dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="33dp"
+            android:background="?attr/fabcolor"
+            android:contentDescription="@string/side_bar"
+            android:scaleType="center"
+            android:src="@drawable/ic_share_variant"
+            android:tint="@color/white"
+            android:tintMode="src_atop"
+            android:tooltipText="Share your art !"
+            android:visibility="visible"
+            app:backgroundTint="@color/transparent"
+            app:fab_colorNormal="?attr/fabcolor"
+            app:fab_size="mini"
+            tools:targetApi="o" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/undo"
+            android:clickable="true"
+            android:layout_width="33dp"
+            android:layout_height="39dp"
+            android:layout_below="@+id/frame_seek"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="47dp"
+            android:layout_marginBottom="32dp"
+            android:layout_marginStart="10dp"
+            android:background="?attr/fabcolor"
+            android:contentDescription="@string/side_bar"
+            android:scaleType="center"
+            android:src="@drawable/undo"
+            android:tooltipText="Share your art !"
+            android:visibility="visible"
+            android:tint="@color/white"
+            android:tintMode="src_atop"
+            app:backgroundTint="@color/transparent"
+            app:fab_colorNormal="?attr/fabcolor"
+            app:fab_size="mini"
+            tools:targetApi="o"
+            android:focusable="true" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/redo"
+            android:clickable="true"
+            android:layout_width="33dp"
+            android:layout_height="39dp"
+            android:layout_below="@+id/frame_seek"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="47dp"
+            android:layout_marginBottom="32dp"
+            android:layout_toEndOf="@+id/undo"
+            android:background="?attr/fabcolor"
+            android:contentDescription="@string/side_bar"
+            android:scaleType="center"
+            android:src="@drawable/redo"
+            android:tint="@color/white"
+            android:tintMode="src_atop"
+            android:tooltipText="Share your art !"
+            android:visibility="visible"
+            app:backgroundTint="@color/transparent"
+            app:fab_colorNormal="?attr/fabcolor"
+            app:fab_size="mini"
+            tools:targetApi="o"
+            android:focusable="true" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/deletePaint"
+            android:layout_width="33dp"
+            android:layout_height="39dp"
+            android:layout_below="@+id/frame_seek"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="47dp"
+            android:layout_marginBottom="32dp"
+            android:layout_toEndOf="@+id/redo"
+            android:background="?attr/fabcolor"
+            android:clickable="true"
+            android:contentDescription="@string/side_bar"
+            android:focusable="true"
+            android:scaleType="center"
+            android:src="@drawable/ic_delete_circle_outline"
+            android:tint="@color/white"
+            android:tintMode="src_atop"
+            android:tooltipText="Share your art !"
+            android:visibility="visible"
+            app:backgroundTint="@color/transparent"
+            app:fab_colorNormal="?attr/fabcolor"
+            app:fab_size="mini"
+            tools:targetApi="o" />
+
+
+    </RelativeLayout>
+</LinearLayout>

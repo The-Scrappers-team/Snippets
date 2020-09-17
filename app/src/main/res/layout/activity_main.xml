@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/rootlayout"
+    android:layout_height="match_parent"
+    tools:context=".MainScreens.MainActivity"
+    android:layoutDirection="ltr"
+    android:background="?attr/layoutbackgroundcolor"
+    android:layout_margin="0dp"
+    android:padding="0dp"
+    >
+
+
+<!--    Search View -->
+<!--   back: drawable search_back-->
+<!--    animation fab open & slide down-->
+    <SearchView
+        android:id="@+id/search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="74dp"
+        android:layout_marginBottom="0dp"
+        android:textAlignment="gravity"
+        android:gravity="top"
+        android:visibility="visible"
+        android:padding="0dp"
+        android:queryBackground="@drawable/search_back"
+        android:background="@color/transparent"
+        android:queryHint="@string/search_0"/>
+
+
+<!--     Grid and settings buttons   -->
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="end|top">
+
+       <!--Settings button-->
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_gravity="top|end"
+        android:layout_marginEnd="4dp"
+        android:layout_marginTop="10dp"
+        android:onClick="setting"
+        android:src="@drawable/ic_more_vert_black_24dp"
+        android:id="@+id/settings"
+        android:background="@color/transparent"/>
+    </RelativeLayout>
+
+    <!--    Grid Button-->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="end|top">
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_gravity="top|end"
+        android:layout_marginEnd="40dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_dashboard_black_24dp"
+        android:id="@+id/changeGridBtn"
+        android:onClick="ChangeGridBtn"
+        android:background="@color/transparent" />
+
+    </RelativeLayout>
+
+
+<!--     Refresh layout  grid columns view-->
+
+    <com.baoyz.widget.PullRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/refreshLayout"
+        android:layout_marginTop="52dp">
+
+            <GridView
+                  android:id="@+id/listFiles"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="8dp"
+                    android:backgroundTint="?attr/colorAccent"
+                    android:backgroundTintMode="screen"
+                    android:paddingTop="12dp"
+                    android:layout_below="@id/search_bar"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/search_bar"
+                    android:scrollbarAlwaysDrawHorizontalTrack="true"/>
+
+    </com.baoyz.widget.PullRefreshLayout>
+
+
+
+<!--    Future Scroll Bar-->
+
+
+<!--    <com.trendyol.bubblescrollbarlib.BubbleScrollBar-->
+<!--        android:id="@+id/scroll"-->
+<!--        android:layout_gravity="end"-->
+<!--        android:orientation="vertical"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:bubbleBackground="@drawable/the_scroll"-->
+<!--        app:thumbBackground="@color/colorAccent"-->
+<!--        app:scrollbarBackground="@color/dark_grey"-->
+<!--        app:bubbleTextSize="8sp"-->
+<!--        app:bubbleMargin="4dp"-->
+<!--        app:bubbleTextColor="@color/fade_white"-->
+<!--        app:bubbleHeight="50dp"-->
+<!--        app:bubbleElevation="6dp"-->
+<!--        app:bubbleMinWidth="50dp"-->
+<!--        app:bubblePadding="4dp"-->
+<!--        />-->
+
+
+<!--    Add Button-->
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignStart="@id/refreshLayout"
+        android:layout_margin="0dp"
+        android:animateLayoutChanges="true"
+        android:gravity="bottom|center_horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="30dp"
+            app:backgroundTint="?attr/addbtn"
+            android:tint="?attr/addbtn_tint"
+            android:backgroundTintMode="src_over"
+            android:clickable="true"
+            android:focusable="true"
+            android:foregroundGravity="bottom|right"
+            android:onClick="addnewNote"
+            app:fabSize="normal"
+            app:fab_colorNormal="?attr/addbtn"
+            app:maxImageSize="24dp"
+            app:layout_constraintVertical_bias="0.11"
+            app:rippleColor="@color/fade_white"
+            app:srcCompat="@drawable/ic_add_black_24dp"/>
+    </RelativeLayout>
+
+</RelativeLayout>

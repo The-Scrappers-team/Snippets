@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/text_fragment_back"
+    android:paddingStart="10dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:paddingEnd="10dp"
+    android:layout_gravity="bottom"
+    app:layout_anchorGravity="bottom"
+   >
+
+    <ImageView
+        android:id="@+id/cameraIntent"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/ic_camera_black_24dp"
+        android:backgroundTint="@color/text_black"
+        android:tooltipText="Take a new Shoot !"
+        android:layout_marginEnd="15dp"
+        tools:targetApi="o" />
+    <ImageView
+        android:id="@+id/openDocIntent"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/filemanager"
+        android:backgroundTint="@color/text_black"
+        android:tooltipText="Open Photo Library !"
+        android:layout_marginEnd="15dp"
+        tools:targetApi="o" />
+    <ImageView
+        android:id="@+id/barcodeReader"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/qrcode_scan"
+        android:backgroundTint="@color/text_black"
+        android:tooltipText="Scan a barcode!"
+        android:layout_marginEnd="15dp"
+        tools:targetApi="o" />
+    <ImageView
+        android:id="@+id/closeOcrFrag"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/closefrag"
+        android:tooltipText="Close"
+        android:backgroundTint="@color/red_slide_icons"
+        tools:targetApi="o" />
+
+</LinearLayout>

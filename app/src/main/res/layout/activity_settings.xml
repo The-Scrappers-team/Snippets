@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layoutDirection="ltr"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:scrollbars="vertical"
+    android:background="?attr/layoutbackgroundcolor">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".MainScreens.Settings"
+    android:layoutDirection="ltr"
+    android:orientation="vertical"
+    >
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimaryDark"
+            app:title="@string/Settings"
+            app:titleTextColor="?attr/textcolor"
+            />
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="12dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="?attr/colorPrimary"
+            android:padding="12dp">
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Themes"
+            android:textSize="24sp"
+            android:textColor="?attr/textcolor"
+            />
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbarThumbHorizontal="@color/transparent">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:baselineAligned="false">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_margin="4dp">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/fingerprint_red"
+                        android:onClick="defaultTheme"
+                        android:background="@drawable/button_red_back"
+                        android:layout_gravity="center_horizontal"
+                        android:contentDescription="@string/AppTheme"
+                        android:layout_marginBottom="12dp"
+                        />
+
+
+                    <Button
+                        android:id="@+id/defaultTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:text="@string/AppTheme"
+                        android:layout_gravity="center_horizontal|bottom"
+                        android:background="@drawable/button_red_back"
+                        android:textColor="@color/dark_1"
+                        android:onClick="defaultTheme"
+                        android:padding="0dp"
+                        android:layout_margin="4dp"
+                        android:textSize="12sp"
+                        android:shadowColor="@color/transparent"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_margin="4dp">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/fingerprint_green"
+                        android:onClick="greenTheme"
+                        android:background="@drawable/button_green_back"
+                        android:layout_gravity="center_horizontal"
+                        android:contentDescription="@string/Green"
+                        android:layout_marginBottom="12dp"
+                        />
+
+
+                    <Button
+                        android:id="@+id/GreenTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:text="@string/Green"
+                        android:onClick="greenTheme"
+                        android:background="@drawable/button_green_back"
+                        android:textColor="@color/ui_green"
+                        android:layout_gravity="center_horizontal"
+                        android:padding="0dp"
+                        android:layout_margin="4dp"
+                        android:textSize="12sp"
+                        android:shadowColor="@color/transparent"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_margin="4dp">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/fingerprint_orange"
+                        android:onClick="titanTheme"
+                        android:background="@drawable/button_green_back"
+                        android:layout_gravity="center_horizontal"
+                        android:contentDescription="@string/orangy"
+                        android:layout_marginBottom="12dp"
+                        />
+
+
+                    <Button
+                        android:id="@+id/orangeScaleTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:text="@string/orangy"
+                        android:background="@drawable/button_green_back"
+                        android:textColor="@color/ui_orange"
+                        android:onClick="titanTheme"
+                        android:layout_gravity="center_horizontal"
+                        android:padding="0dp"
+                        android:layout_margin="4dp"
+                        android:textSize="12sp"
+                        android:shadowColor="@color/transparent"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_margin="4dp">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/fingerprint_blue"
+                        android:onClick="cyanTheme"
+                        android:background="@drawable/button_dark_back"
+                        android:layout_gravity="center_horizontal"
+                        android:contentDescription="@string/Darky"
+                        android:layout_marginBottom="12dp"
+                        />
+
+
+                    <Button
+                        android:id="@+id/blueScaleTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:text="@string/cyan"
+                        android:background="@drawable/button_blueui"
+                        android:textColor="@color/dark_3"
+                        android:onClick="cyanTheme"
+                        android:layout_gravity="center_horizontal"
+                        android:padding="0dp"
+                        android:layout_margin="4dp"
+                        android:textSize="12sp"
+                        android:shadowColor="@color/transparent"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_margin="4dp">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/fingerprint_grey"
+                        android:onClick="grayScaleTheme"
+                        android:background="@drawable/button_dark_back"
+                        android:layout_gravity="center_horizontal"
+                        android:contentDescription="@string/Darky"
+                        android:layout_marginBottom="12dp"
+                        />
+
+
+                    <Button
+                        android:id="@+id/GrayScaleTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:text="@string/Darky"
+                        android:background="@drawable/button_dark_back"
+                        android:textColor="@color/fade_white"
+                        android:onClick="grayScaleTheme"
+                        android:layout_gravity="center_horizontal"
+                        android:padding="0dp"
+                        android:layout_margin="4dp"
+                        android:textSize="12sp"
+                        android:shadowColor="@color/transparent"/>
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+            </HorizontalScrollView>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+        <Switch
+            android:id="@+id/fingerprintbtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/FingerPrint"
+            android:textSize="18sp"
+            android:background="?attr/colorPrimary"
+            android:onClick="fingerprintButton"
+            android:textColor="?attr/textcolor"
+            android:textColorLink="?attr/fabcolor"
+            android:thumbTintMode="src_atop"
+            android:thumbTint="?attr/textcolor"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_margin="12dp"
+            android:padding="12dp"
+            android:shadowColor="?attr/textcolor"
+            />
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginTop="0dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="?attr/colorPrimary"
+            android:padding="12dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/audio_quality"
+                android:fontFamily="sans-serif"
+                android:textSize="24sp"
+                android:textColor="?attr/textcolor"
+                />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp"
+        >
+    <RadioButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/high"
+        android:text="@string/high_quality_recording"
+        android:textSize="18sp"
+        android:textColor="?attr/textcolor"
+        />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/high_quality_recording"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="16dp"
+            android:paddingTop="6dp"
+            android:layout_marginStart="32dp"
+            android:textColor="?attr/sub_text_color"
+            android:textSize="14sp"
+            />
+    <RadioButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/low"
+        android:text="@string/low_quality_recording"
+        android:textSize="18sp"
+        android:textColor="?attr/textcolor"
+        />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/low_quality_recording"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="16dp"
+            android:paddingTop="6dp"
+            android:layout_marginStart="32dp"
+            android:textColor="?attr/sub_text_color"
+            android:textSize="14sp"
+            />
+
+    </RadioGroup>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="15dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="?attr/colorPrimary"
+            android:padding="12dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/local_backup"
+                android:fontFamily="sans-serif"
+                android:textSize="24sp"
+                android:layout_marginBottom="2dp"
+                android:textColor="?attr/textcolor"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:padding="8dp">
+            <Button
+                style="@android:style/ButtonBar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/restore"
+                android:layout_marginEnd="40dp"
+                android:onClick="restoreData"
+                android:background="@color/transparent_white_2"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                />
+            <Button
+                style="@android:style/ButtonBar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/back_up"
+                android:onClick="backupData"
+                android:background="?attr/textcolor"
+                android:textColor="?attr/layoutbackgroundcolor"
+                android:layout_gravity="end"
+                android:gravity="center"
+                android:layout_weight="1"
+                />
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="24dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:paddingEnd="8dp"
+                android:text="@string/bakeup_notes"
+                android:fontFamily="sans-serif"
+                android:textSize="16sp"
+                android:layout_marginBottom="12dp"
+                android:textColor="?attr/texthintcolor"
+                />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
+</ScrollView>

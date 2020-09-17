@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Paint.Paint">
+
+    <com.scrappers.notepadsnippet.Paint.PaintView
+        android:id="@+id/canvas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:backgroundTint="@color/white"
+        android:layout_alignParentTop="true"
+        android:layout_above="@id/framePaintFragment"
+        />
+
+
+    <com.github.clans.fab.FloatingActionButton
+        android:id="@+id/paintCursor"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
+        android:clickable="false"
+        android:pointerIcon="crosshair"
+        android:background="@drawable/blackpaint"
+        android:contentDescription="@string/side_bar"
+        android:elevation="20dp"
+        android:scaleType="center"
+        android:src="@drawable/brush"
+        android:layout_marginTop="300dp"
+        android:layout_marginStart="150dp"
+        android:tint="@color/white"
+        android:tooltipText="Scratch to brush !"
+        android:tintMode="src_atop"
+        android:visibility="visible"
+        app:backgroundTint="@color/transparent"
+        app:fab_colorNormal="@color/text_black"
+        app:fab_colorRipple="@color/transparent_black"
+        app:rippleColor="?attr/fabpressedcolor"
+        app:fab_colorPressed="?attr/fabpressedcolor"
+        app:fab_size="mini"
+        tools:targetApi="o" />
+
+    <ImageView
+        android:id="@+id/brushTrack"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_marginStart="144dp"
+        android:layout_marginTop="294dp"
+        android:background="@drawable/circle_back"
+        android:backgroundTint="@color/text_black"/>
+    <LinearLayout
+
+        android:id="@+id/framePaintFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="?attr/cardbackgroundcolor"
+
+            >
+
+            <ImageButton
+                android:id="@+id/rubber"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="8dp"
+                android:background="@color/transparent"
+                android:onClick="quit"
+                android:padding="8dp"
+                android:src="@drawable/back" />
+
+
+            <RelativeLayout
+                android:id="@+id/openDialogLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/quit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:background="@color/transparent"
+                    android:onClick="rubber"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_eraser" />
+
+                <ImageButton
+                    android:id="@+id/dismiss"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="8dp"
+                    android:background="@color/transparent"
+                    android:onClick="openController"
+                    android:padding="8dp"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="30dp"
+                    android:src="@drawable/upfrag" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/PaintControllers"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:background="@color/cornysilk"
+            android:foregroundGravity="bottom"
+            android:visibility="invisible" />
+    </LinearLayout>
+</RelativeLayout>

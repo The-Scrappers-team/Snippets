@@ -1,0 +1,7 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="horizontal_items">35dp</dimen>
+    <dimen name="horizontal_items_padding">9.67dp</dimen>
+    <dimen name="horizontal_items_margin">5.8dp</dimen>
+    <dimen name="brush_color_ImageSize">46dp</dimen>
+</resources>

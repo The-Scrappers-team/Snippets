@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/slide_image"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:src="@drawable/gears_icon"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"/>
+    <TextView
+        android:id="@+id/slide_head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="Heloooooo"
+        android:textAppearance="@android:style/TextAppearance.Medium"
+        android:layout_below="@id/slide_image"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/text_black"
+        android:fontFamily="sans-serif-black"
+        android:layout_centerHorizontal="true"
+
+        />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/slide_head">
+    <TextView
+        android:id="@+id/slide_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="My name is Pavly and I like eating noodles with my self on my laptop, Spending most of my time eating or programming or studying medicine"
+        android:textAppearance="@android:style/TextAppearance.Medium"
+        android:layout_marginTop="27dp"
+        android:padding="35dp"
+        android:textColor="@color/transparent_black_b"
+        android:lineHeight="38dp"
+        android:textStyle="bold"
+        android:fontFamily="monospace"
+        android:textSize="16sp"
+        android:verticalScrollbarPosition="right"
+        android:scrollHorizontally="false"
+        android:scrollbars="vertical"
+        android:isScrollContainer="true"
+        />
+    </ScrollView>
+
+
+</RelativeLayout>

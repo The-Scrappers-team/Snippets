@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:background="@drawable/box"
+    android:layoutDirection="ltr"
+    android:visibility="visible"
+    app:cardBackgroundColor="?attr/cardbackgroundcolor"
+    app:cardCornerRadius="6dp"
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="true"
+    app:contentPadding="0dp">
+<!--    <RelativeLayout-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="bottom"-->
+<!--        >-->
+<!--        <ImageView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:src="@drawable/ic_action_voice_search"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_alignParentRight="true"-->
+<!--            android:tint="@color/dark_7"-->
+<!--            android:visibility="invisible"-->
+<!--            />-->
+<!--    </RelativeLayout>-->
+
+<!-- Custom list for notes Linear in linear run on main Activity-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:orientation="vertical">
+
+<!--            Main Title 10 MarginEnd for big screen size-->
+<!--            <androidx.core.widget.NestedScrollView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="110dp">-->
+            <TextView
+                android:id="@+id/mainTitleTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="10dp"
+                android:textSize="28sp"
+                android:textColor="?attr/textcolor"
+                android:text=""
+                android:gravity="top"
+                android:fontFamily="sans-serif" />
+<!--            </androidx.core.widget.NestedScrollView>-->
+
+<!--            Sub Title 10 MarginEnd for big screen size-->
+            <TextView
+                android:id="@+id/subTitleTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_gravity="bottom"
+                android:gravity="bottom"
+                android:textSize="14sp"
+                android:textColor="?attr/textcolor"
+                />
+
+        </LinearLayout>
+
+</androidx.cardview.widget.CardView>

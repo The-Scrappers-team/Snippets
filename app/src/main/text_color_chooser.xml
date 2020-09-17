@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:background="@drawable/text_fragment_back"
+    android:layout_weight="7"
+    android:layout_margin="8dp">
+
+    <ImageButton
+        android:layout_margin="8dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/circle_border_white"
+        android:backgroundTint="@color/text_red_a400"
+        android:backgroundTintMode="add"
+        android:layout_weight="1"
+        android:tag="FF1744"/>
+    <ImageButton
+        android:layout_margin="8dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/circle_border_white"
+        android:backgroundTint="@color/text_green_a400"
+        android:backgroundTintMode="add"
+        android:layout_weight="1"/>
+    <ImageButton
+        android:layout_margin="8dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/circle_border_white"
+        android:backgroundTint="@color/text_blue_a400"
+        android:backgroundTintMode="add"
+        android:layout_weight="1"
+        android:tag="2979FF"/>
+    <ImageButton
+        android:layout_margin="8dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/circle_border_white"
+        android:backgroundTint="@color/text_yellow_a400"
+        android:backgroundTintMode="add"
+        android:layout_weight="1"
+        android:tag="FFEA00"/>
+    <ImageButton
+        android:layout_margin="8dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/circle_border_white"
+        android:backgroundTint="@color/text_black"
+        android:backgroundTintMode="add"
+        android:layout_weight="1"
+        android:tag="000000"/>
+    <ImageButton
+        android:layout_margin="8dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/circle_border_white"
+        android:backgroundTint="@color/text_white"
+        android:backgroundTintMode="add"
+        android:layout_weight="1"
+        android:tag="FFFFFF"/>
+
+
+
+
+</LinearLayout>

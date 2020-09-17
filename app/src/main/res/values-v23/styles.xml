@@ -1,0 +1,179 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="layoutbackgroundcolor">@color/cornysilk</item>
+        <item name="fabcolor">@color/fab_red_color</item>
+        <item name="fabpressedcolor">@color/fab_color_pressed</item>
+        <item name="textcolor">@color/colorAccent</item>
+        <item name="abouttextcolor">@color/fade_white</item>
+        <item name="fablabelshadowcolor">@color/fab_Label_shadowColor</item>
+        <item name="fablabel">@color/dark_1</item>
+        <item name="addbtn">@color/colorPrimaryDark</item>
+        <item name="addbtn_tint">@color/fade_white</item>
+        <item name="cardbackgroundcolor">@color/back</item>
+        <item name="texthintcolor">@color/transparent_white</item>
+        <item name="tintmaincolor">@color/light_brown_orange</item>
+        <item name="side_bar_button">@color/fab_red_color</item>
+        <item name="colorpanel">#edFFFFFF</item>
+        <item name="sub_text_color">@color/transparent_black_b</item>
+    </style>
+
+    <!--  Green Theme-->
+    <style name="GreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="statusBarBackground">@color/fade_white</item>
+        <item name="colorPrimary">@color/fade_white</item>
+        <item name="colorPrimaryDark">@color/fade_white</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="layoutbackgroundcolor">@color/fade_white</item>
+        <item name="fabcolor">@color/ui_green</item>
+        <item name="fabpressedcolor">@color/ui_green</item>
+        <item name="textcolor">@color/colorAccent</item>
+        <item name="abouttextcolor">@color/colorAccent</item>
+        <item name="fablabelshadowcolor">@color/transparent</item>
+        <item name="fablabel">@color/fade_white</item>
+        <item name="addbtn">@color/ui_green</item>
+        <item name="addbtn_tint">@color/fade_white</item>
+        <item name="cardbackgroundcolor">@color/fade_white</item>
+        <item name="texthintcolor">@color/transparent_black</item>
+        <item name="tintmaincolor">@color/ui_green</item>
+        <item name="side_bar_button">@color/ui_green</item>
+        <item name="colorpanel">#eaeaea</item>
+        <item name="sub_text_color">@color/transparent_black_b</item>
+    </style>
+
+
+    <style name="orangeLover" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="statusBarBackground">@color/fade_white</item>
+        <item name="colorPrimary">@color/fade_white</item>
+        <item name="colorPrimaryDark">@color/fade_white</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="layoutbackgroundcolor">@color/fade_white</item>
+        <item name="fabcolor">@color/ui_orange</item>
+        <item name="fabpressedcolor">@color/ui_orange</item>
+        <item name="textcolor">@color/colorAccent</item>
+        <item name="abouttextcolor">@color/colorAccent</item>
+        <item name="fablabelshadowcolor">@color/transparent</item>
+        <item name="fablabel">@color/fade_white</item>
+        <item name="addbtn">@color/ui_orange</item>
+        <item name="addbtn_tint">@color/fade_white</item>
+        <item name="cardbackgroundcolor">@color/ui_orange_card</item>
+        <item name="texthintcolor">@color/transparent_black</item>
+        <item name="tintmaincolor">@color/ui_orange</item>
+        <item name="side_bar_button">@color/ui_orange</item>
+        <item name="colorpanel">#eaeaea</item>
+        <item name="sub_text_color">@color/transparent_black_b</item>
+
+
+    </style>
+    <style name="Darky" parent="Theme.AppCompat.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <!--        <item name="statusBarBackground">@color/fade_white</item>-->
+        <item name="colorPrimary">@color/colorAccent</item>
+        <item name="colorPrimaryDark">@color/dark_14</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="layoutbackgroundcolor">@color/colorAccent</item>
+        <item name="fabcolor">@color/dark_4</item>
+        <item name="fabpressedcolor">@color/fade_white</item>
+        <item name="textcolor">@color/fade_white</item>
+        <item name="abouttextcolor">@color/light_text</item>
+        <item name="fablabelshadowcolor">@color/more_fade_white</item>
+        <item name="fablabel">@color/transparent_white</item>
+        <item name="addbtn">@color/dark_a</item>
+        <item name="addbtn_tint">@color/dark_2</item>
+        <item name="cardbackgroundcolor">@color/dark_3</item>
+        <item name="texthintcolor">@color/transparent_white</item>
+        <item name="tintmaincolor">@color/dark_d</item>
+        <item name="side_bar_button">@color/dark_a</item>
+        <item name="colorpanel">#FFFFFF</item>
+        <item name="sub_text_color">@color/transparent_white_b</item>
+
+    </style>
+    <style name="BlueDark" parent="Theme.AppCompat.NoActionBar">
+    <item name="windowActionBar">false</item>
+    <item name="windowNoTitle">true</item>
+    <item name="android:windowFullscreen">false</item>
+    <item name="android:windowTranslucentStatus">false</item>
+    <item name="android:windowLightStatusBar">false</item>
+    <!--        <item name="statusBarBackground">@color/fade_white</item>-->
+    <item name="colorPrimary">@color/colorAccent</item>
+    <item name="colorPrimaryDark">@color/dark_14</item>
+    <item name="colorAccent">@color/colorAccent</item>
+    <item name="layoutbackgroundcolor">@color/colorAccent</item>
+    <item name="fabcolor">@color/ui_blue</item>
+    <item name="fabpressedcolor">@color/ui_blue</item>
+    <item name="textcolor">@color/fade_white</item>
+    <item name="abouttextcolor">@color/light_text</item>
+    <item name="fablabelshadowcolor">@color/more_fade_white</item>
+    <item name="fablabel">@color/transparent_white</item>
+    <item name="addbtn">@color/ui_blue_lighter</item>
+    <item name="addbtn_tint">@color/fade_white</item>
+    <item name="cardbackgroundcolor">@color/ui_blue_card</item>
+    <item name="texthintcolor">@color/transparent_white</item>
+    <item name="tintmaincolor">@color/ui_blue</item>
+    <item name="side_bar_button">@color/ui_blue</item>
+    <item name="colorpanel">#FFFFFF</item>
+    <item name="sub_text_color">@color/transparent_white_b</item>
+    </style>
+
+    <style name="DialogAnimation1">
+        <item name="android:windowEnterAnimation">@anim/slide_up</item>
+        <item name="android:windowExitAnimation">@anim/slide_down</item>
+    </style>
+
+    <style name="DialogAnimation2">
+        <item name="android:windowEnterAnimation">@anim/fab_scale_up</item>
+        <item name="android:windowExitAnimation">@anim/fab_scale_down</item>
+    </style>
+
+    <style name="DialogAnimation3">
+        <item name="android:windowEnterAnimation">@anim/fade_in</item>
+        <item name="android:windowExitAnimation">@anim/fab_slide_out_to_right</item>
+    </style>
+
+    <style name="DialogAnimation4">
+        <item name="android:windowEnterAnimation">@anim/slide_up_activity</item>
+        <item name="android:windowExitAnimation">@anim/slide_down_activity</item>
+    </style>
+
+    <style name="RoundAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/alrt_items_menu</item>
+    </style>
+    <style name="Scale">
+    <item name="android:windowEnterAnimation">@anim/scale</item>
+    <item name="android:windowExitAnimation">@anim/slide_down_activity</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+
+
+</resources>

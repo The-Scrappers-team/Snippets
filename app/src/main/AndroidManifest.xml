@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.scrappers.notepadsnippet">
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:fullBackupContent="true"
+        android:icon="@drawable/write_paper_ink"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/write_paper_ink"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity android:name=".FingerPrint.FingerPrint" />
+        <activity android:name=".MainScreens.Settings" />
+        <activity android:name=".MainScreens.EditPaneActivity" />
+        <activity android:name=".AboutActivity.aboutActivity"
+            tools:ignore="InnerclassSeparator" />
+
+        <activity android:name=".MainScreens.MainActivity">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+        </activity>
+        <activity android:name=".Paint.Paint" />
+        <activity android:name=".CodeEditorActivity" />
+
+        <activity android:name=".FeaturesShowUp.SliderActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity> <!-- The RECEIVER class deceleration that receive intents actions -->
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+        <meta-data
+            android:name="com.google.mlkit.vision.DEPENDENCIES"
+            android:value="ocr" />
+        <receiver
+            android:name=".PushNotifications.BroadCastReciever"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.TIME_TICK" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".PushNotifications.PushNotifications"
+            android:enabled="true" />
+    </application>
+
+
+</manifest>

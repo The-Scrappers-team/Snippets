@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/morning"
+    android:layoutDirection="ltr"
+    android:backgroundTint="@color/transparent_white_2"
+    android:backgroundTintMode="src_atop"
+    app:layout_optimizationLevel="standard"
+    tools:context=".FeaturesShowUp.SliderActivity">
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpageslide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_above="@id/dots"
+        >
+    </androidx.viewpager.widget.ViewPager>
+<LinearLayout
+    android:padding="20dp"
+    android:id="@+id/dots"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="horizontal"
+    android:layout_alignParentBottom="true"
+    android:layout_centerHorizontal="true"
+    ></LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:text="@string/finish"
+        android:id="@+id/finishbtn"
+        android:textColor="@color/text_white"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:padding="35dp"
+        android:backgroundTint="@color/white"
+        android:visibility="invisible"/>
+
+</RelativeLayout>

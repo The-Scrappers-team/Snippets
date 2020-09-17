@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ffd2aa72</color>
+    <color name="colorPrimaryDark">#fdc19961</color>
+    <color name="colorAccent">#121212</color>
+    <color name="back">#f5deb3</color>
+    <color name="cornysilk">#fff8dc</color>
+    <color name="dark_grey">#141414</color>
+    <color name="fade_white">#fefefe</color>
+    <color name="more_fade_white">#aacdcdcd</color>
+    <color name="blue">#285ADE</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="light_brown_orange">#C77521</color>
+    <color name="aboutYellow">#FFF000</color>
+    <color name="fab_red_color">#DA4336</color>
+    <color name="fab_color_pressed">#E75043</color>
+    <color name="fab_color_ripple">#ddFFFFFF</color>
+    <color name="fab_label_color">#111111</color>
+    <color name="fab_text_color">#FFFFFF</color>
+    <color name="fab_Label_shadowColor">#FDD835</color>
+    <color name="fab_label_pressed">#444444</color>
+    <color name="fab_label_ripple">#66FFFFFF</color>
+    <color name="fab_menu_label_shadowColor">#66000000</color>
+    <color name="transparent_fab_red_color">#66DA4336</color>
+    <color name="transparent_white">#7fFFFFFF</color>
+    <color name="transparent_black">#7f000000</color>
+    <color name="ui_green">#0F8360</color>
+    <color name="fab_color_pressed_green">#aa0F8360</color>
+    <color name="white">#FFFFFF</color>
+    <color name="dark_text">@android:color/secondary_text_light</color>
+    <color name="dark_1">#111111</color>
+    <color name="dark_14">#141414</color>
+    <color name="dark_2">#222222</color>
+    <color name="dark_3">#333333</color>
+    <color name="dark_4">#444444</color>
+    <color name="dark_5">#555555</color>
+    <color name="dark_6">#666666</color>
+    <color name="dark_7">#777777</color>
+    <color name="dark_8">#888888</color>
+    <color name="dark_9">#999999</color>
+    <color name="dark_a">#aaaaaa</color>
+    <color name="shade_light_black_back">#89CFCFCF</color>
+    <color name="shade_dark_white_back">#89515151</color>
+    <color name="light_text">#fefefe</color>
+    <color name="dark_d">#ddcfcfcf</color>
+    <color name="white_e">#f3f3f3</color>
+
+
+
+    <color name="text_red_a400">#FF1744</color>
+    <color name="text_yellow_a400">#FFEA00</color>
+    <color name="text_blue_a400">#2979FF</color>
+    <color name="text_green_a400">#00E676</color>
+    <color name="text_white">#FFF</color>
+    <color name="text_black">#000</color>
+    <color name="text_highL_red">#F50057</color>
+    <color name="text_highL_green">#76FF03</color>
+    <color name="text_highL_yellow_default">#FFEA00</color>
+    <color name="text_highL_orange">#FF3D00</color>
+    <color name="text_highL_blue">#00B0FF</color>
+
+
+</resources>

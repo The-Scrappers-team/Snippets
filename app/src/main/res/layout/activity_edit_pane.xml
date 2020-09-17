@@ -1,0 +1,663 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainScreens.EditPaneActivity"
+    android:background="?attr/layoutbackgroundcolor"
+    android:layoutDirection="ltr"
+    android:theme="@style/Theme.Design.Light.NoActionBar"
+    tools:actionBarNavMode="tabs">
+
+<!-- Tab and R L Buttons in Fragment see FragmentKeyBoardControl.xml -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/closeKeyBoardController"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="100dp"
+        app:backgroundTint="?attr/fabcolor"
+        android:layout_alignParentEnd="true"
+        android:foregroundGravity="right"
+        android:visibility="invisible"
+        android:src="@drawable/forwardarrow" />
+
+<!--    Record Player -->
+    <TextView
+        android:id="@+id/Duration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/zero"
+        android:textSize="15sp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:gravity="end|top"
+        android:visibility="invisible"
+        android:textColor="?attr/textcolor"/>
+    <TextView
+        android:id="@+id/CurrentProgress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/zero"
+        android:textSize="15sp"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="14dp"
+        android:gravity="start|top|center_horizontal"
+        android:visibility="invisible"
+        android:textColor="?attr/textcolor"/>
+
+
+<!--     Edit Main text -->
+<!--    1st Problem: No design for each line All text is one line-->
+<!--    2nd Problem first line cannot be bolder-->
+<!--    -->
+<!--    hint = Type Here -->
+<!--    below = record player-->
+<!--    Aside = frame Layout (inflate(relative))-->
+<!--    -->
+<!--    -->
+
+
+<!--Edit text has one warning autofillhints with guessing possibility like username and passwords-->
+    <jp.wasabeef.richeditor.RichEditor
+        android:id="@+id/edText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/MediaSeekBar"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="94dp"
+        android:background="?attr/layoutbackgroundcolor"
+        android:gravity="top"
+        android:inputType="textMultiLine"
+        android:paddingStart="8dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="2dp"
+        android:textColor="?attr/textcolor"
+        app:layout_constraintVertical_bias="0.11" />
+
+    <com.github.clans.fab.FloatingActionButton
+        android:id="@+id/openNavBarBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="72dp"
+        android:layout_marginBottom="65dp"
+        android:background="?attr/fabcolor"
+        android:contentDescription="@string/side_bar"
+        android:layout_above="@id/edText"
+        android:scaleType="center"
+        android:src="@drawable/circle_menu"
+        android:tint="@color/white"
+        android:tintMode="src_atop"
+        app:backgroundTint="@color/transparent"
+        app:fab_colorNormal="?attr/fabcolor"
+        app:fab_colorRipple="@color/transparent_black"
+        app:rippleColor="?attr/fabpressedcolor"
+        app:fab_colorPressed="?attr/fabpressedcolor"
+        app:fab_size="mini" />
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="40dp"
+    android:id="@+id/rootlayout"
+    android:gravity="end"
+    >
+<!--  Fragment for L-TAB-R-->
+    <FrameLayout
+        android:id="@+id/layoutfrag"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:foregroundGravity="top|right"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="8dp"
+        android:paddingEnd="3dp"
+        android:paddingStart="12dp"
+        />
+
+</RelativeLayout>
+<!--    Fab-->
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:animateLayoutChanges="true"
+        android:layout_marginBottom="38dp">
+
+
+        <com.github.clans.fab.FloatingActionMenu
+            android:id="@+id/menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="12dp"
+            app:layout_constraintVertical_bias="0.11"
+            fab:menu_animationDelayPerItem="30"
+            fab:menu_backgroundColor="@color/transparent"
+            fab:menu_buttonSpacing="0dp"
+            app:menu_colorNormal="?attr/fabcolor"
+            fab:menu_colorPressed="@color/transparent_black"
+            fab:menu_colorRipple="@color/transparent_black"
+            fab:menu_fab_size="normal"
+            fab:menu_icon="@drawable/fab_add"
+            app:menu_labels_colorNormal="@color/colorAccent"
+            fab:menu_labels_colorPressed="@color/transparent_black"
+            fab:menu_labels_colorRipple="@color/fab_label_ripple"
+            fab:menu_labels_cornerRadius="12dp"
+            fab:menu_labels_ellipsize="middle"
+            fab:menu_labels_hideAnimation="@anim/fab_slide_out_to_right"
+            fab:menu_labels_margin="0dp"
+            fab:menu_labels_maxLines="-1"
+            fab:menu_labels_padding="8dp"
+            fab:menu_labels_paddingBottom="4dp"
+            fab:menu_labels_paddingLeft="8dp"
+            fab:menu_labels_paddingRight="8dp"
+            fab:menu_labels_paddingTop="4dp"
+            fab:menu_labels_position="left"
+            fab:menu_labels_showAnimation="@anim/fab_slide_in_from_right"
+            fab:menu_labels_showShadow="true"
+            fab:menu_labels_singleLine="false"
+            fab:menu_labels_textColor="@color/fade_white"
+            fab:menu_labels_textSize="14sp"
+            fab:menu_openDirection="up"
+            fab:menu_shadowColor="@color/fab_menu_label_shadowColor"
+            fab:menu_shadowRadius="3dp"
+            fab:menu_shadowXOffset="1dp"
+            fab:menu_shadowYOffset="3dp"
+            fab:menu_showShadow="true"
+            fab:menu_fab_label="Menu">
+
+<!--        Record button -->
+
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/RecordBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/recordbtn"
+                app:fab_colorRipple="@color/transparent_black"
+                app:rippleColor="?attr/fabpressedcolor"
+                app:fab_colorNormal="@color/fade_white"
+                app:fab_shadowColor="?attr/fablabelshadowcolor"
+                app:fab_colorPressed="?attr/fabpressedcolor"
+                fab:fab_size="normal"
+                fab:fab_label="Record" />
+
+<!--        Pause Record button-->
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/PauseRecord"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_pause_circle_outline"
+                app:fab_colorRipple="@color/transparent_black"
+                app:rippleColor="?attr/fabpressedcolor"
+                app:fab_colorPressed="?attr/fabpressedcolor"
+                app:fab_colorNormal="?attr/fabcolor"
+                app:fab_shadowColor="?attr/fablabelshadowcolor"
+                android:visibility="invisible"
+                fab:fab_label="Pause Recording"
+                fab:fab_size="mini" />
+
+<!--        Play and Pause sound button    -->
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/playMedia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_play"
+                app:fab_colorRipple="@color/transparent_black"
+                app:rippleColor="?attr/fabpressedcolor"
+                app:fab_colorNormal="?attr/fabcolor"
+                app:fab_shadowColor="?attr/fablabelshadowcolor"
+                app:fab_colorPressed="?attr/fabpressedcolor"
+                fab:fab_size="mini"
+                fab:fab_label="Play Record" />
+
+<!--        Delete Record    -->
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/deleteRecord"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_delete_circle_outline"
+                app:fab_colorNormal="?attr/fabcolor"
+                app:fab_colorRipple="@color/transparent_black"
+                app:rippleColor="?attr/fabpressedcolor"
+                app:fab_shadowColor="?attr/fablabelshadowcolor"
+                app:fab_colorPressed="?attr/fabpressedcolor"
+                fab:fab_size="mini"
+                fab:fab_label="Delete Record" />
+
+
+
+<!--        Share button    -->
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/shareBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_share_variant"
+                fab:fab_size="mini"
+                app:fab_colorRipple="@color/transparent_black"
+                app:rippleColor="?attr/fabpressedcolor"
+                app:fab_colorNormal="?attr/fabcolor"
+                app:fab_shadowColor="?attr/fablabelshadowcolor"
+                app:fab_colorPressed="?attr/fabpressedcolor"
+                fab:fab_label="Share Note" />
+
+<!--        Search word    -->
+<!--            <com.github.clans.fab.FloatingActionButton-->
+<!--                android:id="@+id/searchWordBtn"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:src="@drawable/pencil"-->
+<!--                android:onClick="searchWordBtn"-->
+<!--                fab:fab_size="mini"-->
+<!--                app:fab_colorRipple="@color/transparent_black"-->
+<!--                app:rippleColor="?attr/fabpressedcolor"-->
+<!--                app:fab_colorNormal="?attr/fabcolor"-->
+<!--                app:fab_shadowColor="?attr/fablabelshadowcolor"-->
+<!--                app:fab_colorPressed="?attr/fabpressedcolor"-->
+<!--                fab:fab_label="@string/search_word"/>-->
+
+<!--        Save button-->
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/saveBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_content_save_outline"
+                app:fab_colorRipple="@color/transparent_black"
+                app:rippleColor="?attr/fabpressedcolor"
+                app:fab_colorNormal="?attr/fabcolor"
+                app:fab_shadowColor="?attr/fablabelshadowcolor"
+                app:fab_colorPressed="?attr/fabpressedcolor"
+                fab:fab_label="Save Note"
+                fab:fab_size="mini" />
+
+        </com.github.clans.fab.FloatingActionMenu>
+
+
+    </RelativeLayout>
+
+<!--    Media Player-->
+
+    <SeekBar
+        android:id="@+id/MediaSeekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@id/edText"
+        android:layout_gravity="start|top|center"
+        android:layout_marginStart="65dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="?attr/colorPrimary"
+        android:backgroundTintMode="src_over"
+        android:keepScreenOn="true"
+        android:layoutDirection="ltr"
+        android:progressTint="?attr/fabpressedcolor"
+        android:thumbTint="?attr/fabcolor"
+        android:visibility="invisible"/>
+
+<!--    text While recording-->
+    <TextView
+        android:id="@+id/recordduration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/zeros"
+        android:visibility="invisible"
+        android:gravity="end|top"
+        android:layout_marginEnd="60dp"
+        android:layout_marginTop="15dp"
+        android:textAlignment="gravity"
+        android:layout_marginStart="80dp"
+        android:textSize="24sp"
+        android:textColor="?attr/textcolor"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:gravity="bottom"
+        >
+        <!--  Fragment for OCR(Camera Intent/File Manager Chooser)-->
+        <FrameLayout
+            android:id="@+id/ocrChooser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="250dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="30dp"
+            android:paddingEnd="3dp"
+            android:layout_gravity="bottom"
+            android:visibility="invisible"
+            android:paddingStart="12dp"
+            />
+
+        <!--  Fragment for L-TAB-R-->
+        <FrameLayout
+            android:id="@+id/colorPanelChooser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:foregroundGravity="top|right"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="8dp"
+            android:paddingEnd="3dp"
+            android:paddingStart="12dp"
+            />
+
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent_black"
+        android:scrollbarThumbHorizontal="@color/transparent"
+        android:scrollbarFadeDuration="@android:integer/config_shortAnimTime">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:id="@+id/bottomBarLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+
+            <ImageButton
+                android:id="@+id/action_undo"
+                android:layout_marginStart="24dp"
+                android:padding="@dimen/horizontal_items_padding"
+                android:layout_width="@dimen/horizontal_items"
+                android:layout_height="@dimen/horizontal_items"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/undo"
+                android:layout_marginEnd="@dimen/horizontal_items_margin"
+                android:layout_marginTop="@dimen/horizontal_items_margin"
+                android:layout_marginBottom="@dimen/horizontal_items_margin"/>
+
+            <ImageButton
+                android:id="@+id/action_redo"
+                android:padding="@dimen/horizontal_items_padding"
+                android:layout_width="@dimen/horizontal_items"
+                android:layout_height="@dimen/horizontal_items"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/redo"
+                android:layout_margin="@dimen/horizontal_items_margin"
+                />
+
+            <ImageButton
+                android:id="@+id/action_bold"
+                android:padding="@dimen/horizontal_items_padding"
+                android:layout_width="@dimen/horizontal_items"
+                android:layout_height="@dimen/horizontal_items"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/bold"
+                android:layout_margin="@dimen/horizontal_items_margin"
+                />
+
+            <ImageButton
+                android:id="@+id/action_italic"
+                android:padding="5dp"
+                android:layout_width="@dimen/horizontal_items"
+                android:layout_height="@dimen/horizontal_items"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_format_italic_white_24dp"
+                android:layout_margin="@dimen/horizontal_items_margin"
+                />
+
+            <ImageButton
+                android:id="@+id/action_underline"
+                android:padding="@dimen/horizontal_items_padding"
+                android:layout_width="@dimen/horizontal_items"
+                android:layout_height="@dimen/horizontal_items"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/underline"
+                android:layout_margin="@dimen/horizontal_items_margin"
+                />
+
+
+            <ImageButton
+                android:id="@+id/action_strikethrough"
+                android:padding="@dimen/horizontal_items_padding"
+                android:layout_width="@dimen/horizontal_items"
+                android:layout_height="@dimen/horizontal_items"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/strikethrough"
+                android:layout_margin="@dimen/horizontal_items_margin"
+                />
+
+            <ImageButton
+                android:id="@+id/size_up"
+                android:padding="4dp"
+                android:layout_width="@dimen/horizontal_items"
+                android:layout_height="@dimen/horizontal_items"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_format_font_size_increase"
+                android:layout_margin="@dimen/horizontal_items_margin"
+                />
+
+            <ImageButton
+                android:id="@+id/size_down"
+                android:padding="7dp"
+                android:layout_width="@dimen/horizontal_items"
+                android:layout_height="@dimen/horizontal_items"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_format_font_size_decrease"
+                android:layout_margin="@dimen/horizontal_items_margin"
+                />
+
+            <ImageButton
+                android:id="@+id/action_txt_color"
+                android:padding="4dp"
+                android:layout_width="@dimen/horizontal_items"
+                android:layout_height="@dimen/horizontal_items"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_format_color_text_black_34dp"
+                android:layout_marginStart="@dimen/horizontal_items_margin"
+                android:layout_marginEnd="@dimen/horizontal_items_margin"
+                android:layout_marginBottom="@dimen/horizontal_items_margin"
+                android:layout_marginTop="@dimen/horizontal_items_margin"
+
+                />
+
+            <ImageButton
+                android:id="@+id/action_bg_color"
+                android:padding="4dp"
+                android:layout_width="@dimen/horizontal_items"
+                android:layout_height="@dimen/horizontal_items"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_format_color_fill_white_24dp"
+                android:layout_marginStart="@dimen/horizontal_items_margin"
+                android:layout_marginEnd="@dimen/horizontal_items_margin"
+                android:layout_marginBottom="@dimen/horizontal_items_margin"
+                android:layout_marginTop="@dimen/horizontal_items_margin"
+                />
+
+            <ImageButton
+                android:id="@+id/action_subscript"
+                android:padding="@dimen/horizontal_items_padding"
+                android:layout_width="@dimen/horizontal_items"
+                android:layout_height="@dimen/horizontal_items"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/subscript"
+                android:layout_margin="@dimen/horizontal_items_margin"
+                />
+
+            <ImageButton
+                android:id="@+id/action_superscript"
+                android:padding="@dimen/horizontal_items_padding"
+                android:layout_width="@dimen/horizontal_items"
+                android:layout_height="@dimen/horizontal_items"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/superscript"
+                android:layout_margin="@dimen/horizontal_items_margin"
+                />
+
+            <ImageButton
+                android:id="@+id/action_align_left"
+                android:padding="@dimen/horizontal_items_padding"
+                android:layout_width="@dimen/horizontal_items"
+                android:layout_height="@dimen/horizontal_items"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/justify_left"
+                android:layout_margin="@dimen/horizontal_items_margin"
+                />
+
+            <ImageButton
+                android:id="@+id/action_align_center"
+                android:padding="@dimen/horizontal_items_padding"
+                android:layout_width="@dimen/horizontal_items"
+                android:layout_height="@dimen/horizontal_items"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/justify_center"
+                android:layout_margin="@dimen/horizontal_items_margin"
+                />
+
+            <ImageButton
+                android:id="@+id/action_align_right"
+                android:padding="@dimen/horizontal_items_padding"
+                android:layout_width="@dimen/horizontal_items"
+                android:layout_height="@dimen/horizontal_items"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/justify_right"
+                android:layout_margin="@dimen/horizontal_items_margin"
+                />
+
+            <ImageButton
+                android:id="@+id/action_indent"
+                android:padding="3dp"
+                android:layout_width="@dimen/horizontal_items"
+                android:layout_height="@dimen/horizontal_items"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_format_indent_increase_black_36dp"
+                android:layout_margin="@dimen/horizontal_items_margin"
+                />
+
+            <ImageButton
+                android:id="@+id/action_outdent"
+                android:padding="3dp"
+                android:layout_width="@dimen/horizontal_items"
+                android:layout_height="@dimen/horizontal_items"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_format_indent_decrease_black_36dp"
+                android:layout_margin="@dimen/horizontal_items_margin"
+                />
+
+            <ImageButton
+                android:id="@+id/action_insert_bullets"
+                android:padding="@dimen/horizontal_items_padding"
+                android:layout_width="@dimen/horizontal_items"
+                android:layout_height="@dimen/horizontal_items"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/bullets"
+                android:layout_margin="@dimen/horizontal_items_margin"
+                />
+
+            <ImageButton
+                android:id="@+id/action_insert_numbers"
+                android:padding="@dimen/horizontal_items_padding"
+                android:layout_width="@dimen/horizontal_items"
+                android:layout_height="@dimen/horizontal_items"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/numbers"
+                android:layout_margin="@dimen/horizontal_items_margin"
+                />
+
+            <ImageButton
+                android:id="@+id/action_blockquote"
+                android:padding="5dp"
+                android:layout_width="@dimen/horizontal_items"
+                android:layout_height="@dimen/horizontal_items"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_format_quote_white_36dp"
+                android:layout_margin="@dimen/horizontal_items_margin"
+                />
+
+            <ImageButton
+                android:id="@+id/action_insert_image"
+                android:padding="5dp"
+                android:layout_width="@dimen/horizontal_items"
+                android:layout_height="@dimen/horizontal_items"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_insert_photo_white_24dp"
+                android:layout_margin="@dimen/horizontal_items_margin"
+                />
+
+
+            <ImageButton
+                android:id="@+id/insert_fromStorage"
+                android:padding="5dp"
+                android:layout_width="@dimen/horizontal_items"
+                android:layout_height="@dimen/horizontal_items"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/attach_file"
+                android:tooltipText="Attach Text File From Storage"
+                android:layout_marginEnd="24dp"
+                android:layout_marginStart="@dimen/horizontal_items_margin"
+                android:layout_marginTop="@dimen/horizontal_items_margin"
+                android:layout_marginBottom="@dimen/horizontal_items_margin"
+                />
+
+
+        </LinearLayout>
+    </HorizontalScrollView>
+    </LinearLayout>
+
+
+</RelativeLayout>

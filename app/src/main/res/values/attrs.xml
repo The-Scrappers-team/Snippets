@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ds">
+        <attr name="backgroundcolor" format="color"/>
+        <attr name="cardbackgroundcolor" format="color"/>
+        <attr name="textcolor" format="color"/>
+        <attr name="tintcolor" format="color"/>
+        <attr name="fabcolor" format="color"/>
+        <attr name="fabpressedcolor" format="color"/>
+        <attr name="side_bar_button" format="color"/>
+<!--        cornysilk and fade white-->
+        <attr name="layoutbackgroundcolor" format="color"/>
+        <attr name="listadaptercolor" format="color"/>
+        <attr name="colorPrimary" format="color"/>
+        <attr name="colorPrimaryDark" format="color"/>
+        <attr name="abouttextcolor" format="color"/>
+        <attr name="fablabelshadowcolor" format="color"/>
+        <attr name="fablabel" format="color"/>
+        <attr name="colorAccent" format="color"/>
+        <attr name="addbtn" format="color"/>
+        <attr name="tintmaincolor" format="color"/>
+        <attr name="texthintcolor" format="color"/>
+        <attr name="addbtn_tint" format="color"/>
+        <attr name="colorpanel" format="color"/>
+        <attr name="sub_text_color" format="color"/>
+
+
+
+
+    </declare-styleable>
+</resources>

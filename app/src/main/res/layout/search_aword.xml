@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorPrimary"
+    android:padding="12dp">
+
+
+    <!--    Ask for colors for search -->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="?attr/textcolor"
+        android:textStyle="bold"
+        android:text="@string/color_select" />
+
+                        <!--    Text Colors-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_margin="8dp">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_marginRight="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="Listener_For_TextColor"
+        android:tag="285ADE"
+        app:backgroundTint="@color/blue" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_marginRight="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="Listener_For_TextColor"
+        android:tag="DA4336"
+        app:backgroundTint="@color/fab_red_color" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_marginRight="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="Listener_For_TextColor"
+        android:tag="fdc19961"
+        app:backgroundTint="@color/colorPrimaryDark" />
+
+
+    </LinearLayout>
+
+
+                                <!--  Highlight colors  -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="?attr/textcolor"
+        android:textStyle="bold"
+        android:text="@string/highlight_select" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
+        >
+    <Button
+        style="@android:style/Widget.Material.Button.Borderless"
+        android:layout_weight="1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/search_word_textandhighlight"
+        android:layout_margin="8dp"
+        android:tag="FFF000"
+        android:onClick="Listener_For_SpanColor"
+        app:backgroundTint="@color/aboutYellow" />
+
+    <Button
+        style="@android:style/Widget.Material.Button.Borderless"
+        android:layout_weight="1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="Listener_For_SpanColor"
+        android:tag="ff0099cc"
+        android:background="@drawable/search_word_textandhighlight"
+        android:layout_margin="8dp"
+        app:backgroundTint="@android:color/holo_blue_dark" />
+
+
+    <Button
+        style="@android:style/Widget.Material.Button.Borderless"
+        android:layout_weight="1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="Listener_For_SpanColor"
+        android:tag="40ff09"
+        android:background="@drawable/search_word_textandhighlight"
+        android:layout_margin="8dp"
+        app:backgroundTint="#40ff09" />
+
+
+        <!--Entering Search word-->
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/searchaWord"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text=""
+        android:hint="@string/search_word"
+        android:textColor="?attr/textcolor"
+        android:textColorHint="?attr/texthintcolor"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+    <Button
+        style="@android:style/Widget.Material.Button.Borderless"
+        android:id="@+id/searchWordDialogBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/search_word"
+        android:textColor="?attr/textcolor"
+        android:padding="8dp"
+        android:background="@drawable/box"
+        android:layout_marginEnd="8dp"/>
+
+    <Button
+        style="@android:style/Widget.Material.Button.Borderless"
+        android:id="@+id/cancelWordDialogBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cancel"
+        android:padding="8dp"
+        android:textColor="?attr/textcolor"
+        android:background="@drawable/box"
+        android:layout_marginStart="8dp"/>
+    </LinearLayout>
+</LinearLayout>
