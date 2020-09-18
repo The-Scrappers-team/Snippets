@@ -23,9 +23,9 @@ import static com.scrappers.notepadsnippet.MainScreens.EditPaneActivity.NewFileN
 import static com.scrappers.notepadsnippet.MainScreens.EditPaneActivity.btnBackPressed;
 import static com.scrappers.notepadsnippet.MainScreens.EditPaneActivity.noteBox;
 import static com.scrappers.notepadsnippet.MainScreens.EditPaneActivity.path;
-import static com.scrappers.notepadsnippet.MainScreens.MainActivity.NumberofNotes;
 import static com.scrappers.notepadsnippet.MainScreens.MainActivity.fileName;
 import static com.scrappers.notepadsnippet.MainScreens.MainActivity.isEditEntry;
+import static com.scrappers.notepadsnippet.MainScreens.MainActivity.notesNumber;
 import static java.lang.System.out;
 
 public class saveNote {
@@ -69,7 +69,7 @@ public class saveNote {
                         context.startActivity(new Intent(context, MainActivity.class));
                         context.overridePendingTransition(R.anim.slide_in_left_noalpha,R.anim.slide_out_right_noalpha);
                     } else {
-                        path = context.getFilesDir() + "/SPRecordings/Notes/" + "Note "+(NumberofNotes);
+                        path = context.getFilesDir() + "/SPRecordings/Notes/" + "Note "+(notesNumber);
                         writeTextFiles(path, (noteBox.getHtml()==null)?"":noteBox.getHtml());
                         isEditEntry =1;
                         saveDialog.dismiss();

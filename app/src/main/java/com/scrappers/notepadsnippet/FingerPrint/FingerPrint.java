@@ -1,24 +1,15 @@
 package com.scrappers.notepadsnippet.FingerPrint;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.app.KeyguardManager;
-import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.CancellationSignal;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyProperties;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.scrappers.notepadsnippet.MainScreens.MainActivity;
 import com.scrappers.notepadsnippet.R;
 
 import java.security.KeyStore;
@@ -27,8 +18,9 @@ import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 
-import static androidx.core.content.ContextCompat.startActivity;
-import static com.scrappers.notepadsnippet.MainScreens.MainActivity.FINGERPRINT_TRANSACTION;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
 import static com.scrappers.notepadsnippet.MainScreens.MainActivity.Theme;
 
 public class FingerPrint extends AppCompatActivity {
@@ -57,25 +49,25 @@ public class FingerPrint extends AppCompatActivity {
             //Check whether the device has a fingerprint sensor//
             if ( !fingerprintManager.isHardwareDetected() ){
                 // If a fingerprint sensor isn’t available, then inform the user that they’ll be unable to use your app’s fingerprint functionality//
-                textView.setText("Your device doesn't support fingerprint authentication");
+                textView.setText(R.string.deviceNotSupported);
             }
             //Check whether the user has granted your app the USE_FINGERPRINT permission//
             if ( ActivityCompat.checkSelfPermission(this,
                     Manifest.permission.USE_FINGERPRINT) != PackageManager.PERMISSION_GRANTED ){
                 // If your app doesn't have this permission, then display the following text//
-                textView.setText("Please enable the fingerprint permission");
+                textView.setText(R.string.enableWarning);
             }
 
             //Check that the user has registered at least one fingerprint//
             if ( !fingerprintManager.hasEnrolledFingerprints() ){
-                // If the user hasn’t configured any fingerprints, then display the following message//
-                textView.setText("No fingerprint configured. Please register at least one fingerprint in your device's Settings");
+                // If the user has n’t configured any fingerprints, then display the following message//
+                textView.setText(R.string.noF);
             }
 
-            //Check that the lockscreen is secured//
+            //Check that the lockScreen is secured//
             if ( !keyguardManager.isKeyguardSecure() ){
-                // If the user hasn’t secured their lockscreen with a PIN password or pattern, then display the following text//
-                textView.setText("Please enable lockScreen security in your device's Settings");
+                // If the user has n’t secured their lockScreen with a PIN password or pattern, then display the following text//
+                textView.setText(R.string.enableFingerPrintInSettings);
             } else {
                 try {
                     generateKey();
@@ -89,7 +81,7 @@ public class FingerPrint extends AppCompatActivity {
 
                     // Here, I’m referencing the FingerprintHandler class that we’ll create in the next section. This class will be responsible
                     // for starting the authentication process (via the startAuth method) and processing the authentication process events//
-                    FingerprintHandler helper = new FingerprintHandler(this);
+                    FingerPrintHandler helper = new FingerPrintHandler(this);
                     helper.startAuth(fingerprintManager, cryptoObject);
 
                 }
@@ -97,7 +89,7 @@ public class FingerPrint extends AppCompatActivity {
         }
     }
 
-    public void ReadTheme(){
+    private void ReadTheme(){
         //applying themes according to the content
         if(Theme.contains("GreenTheme")){
             setTheme(R.style.GreenTheme);
@@ -179,47 +171,9 @@ public class FingerPrint extends AppCompatActivity {
 
 
     }
-
-
 }
 
 
 
-@RequiresApi(api = Build.VERSION_CODES.M)
- class FingerprintHandler extends FingerprintManager.AuthenticationCallback{
-
-    private Context context;
-    private CancellationSignal cancellationSignal;
-
-    public FingerprintHandler(Context mContext) {
-        context = mContext;
-    }
-    @Override
-    public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult result) {
-        super.onAuthenticationSucceeded(result);
-        startActivity(context,new Intent(context, MainActivity.class),null);
-        Toast.makeText(context,"Authentication Success",Toast.LENGTH_LONG).show();
-
-        FINGERPRINT_TRANSACTION=true;
-
-    }
-
-    @Override
-    public void onAuthenticationFailed() {
-        super.onAuthenticationFailed();
-        Toast.makeText(context,"Authentication Failed",Toast.LENGTH_LONG).show();
-
-
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public void startAuth(FingerprintManager manager, FingerprintManager.CryptoObject cryptoObject) {
-
-        cancellationSignal = new CancellationSignal();
-        if ( ActivityCompat.checkSelfPermission(context, Manifest.permission.USE_FINGERPRINT) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        manager.authenticate(cryptoObject, cancellationSignal, 0, this, null);
-    }}
 
 

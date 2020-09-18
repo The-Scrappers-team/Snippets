@@ -110,6 +110,10 @@
     <string name="emboss">Emboss</string>
     <string name="blur">Blur</string>
     <string name="normal">Normal</string>
+    <string name="deviceNotSupported">Your device doesn\'t support fingerprint authentication</string>
+    <string name="enableWarning">Please enable the fingerprint permission</string>
+    <string name="noF">No fingerprint configured. Please register at least one fingerprint in your device\'s Settings</string>
+    <string name="enableFingerPrintInSettings">Please enable lockScreen security in your device\'s Settings</string>
     <string-array name="pref_example_list_titles">
         <item>Always</item>
         <item>When possible</item>

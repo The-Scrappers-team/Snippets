@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="deviceNotSupported">Your device doesn\'t support fingerprint authentication</string>
+    <string name="enableWarning">Please enable the fingerprint permission</string>
+    <string name="enableFingerPrintInSettings">Please enable lockScreen security in your device\'s Settings</string>
+</resources>

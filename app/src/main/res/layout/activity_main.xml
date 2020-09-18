@@ -155,7 +155,7 @@
             android:clickable="true"
             android:focusable="true"
             android:foregroundGravity="bottom|right"
-            android:onClick="addnewNote"
+            android:onClick="addNewNote"
             app:fabSize="normal"
             app:fab_colorNormal="?attr/addbtn"
             app:maxImageSize="24dp"

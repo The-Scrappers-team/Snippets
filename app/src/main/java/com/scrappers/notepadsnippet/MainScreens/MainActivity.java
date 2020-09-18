@@ -31,6 +31,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
@@ -43,9 +44,7 @@ import io.github.douglasjunior.androidSimpleTooltip.SimpleTooltip;
 
 import static android.os.Environment.getExternalStorageDirectory;
 import static com.scrappers.notepadsnippet.FeaturesShowUp.SliderActivity.firstStart;
-
-
-
+import static java.lang.System.out;
 
 
 public class MainActivity extends AppCompatActivity  {
@@ -56,23 +55,21 @@ public class MainActivity extends AppCompatActivity  {
     MainActivityListAdapter lsAdapter;
     ArrayList<String> mainTitle = new ArrayList<>();
     ArrayList<String> subTitle = new ArrayList<>();
-    GridView lsview;
+    GridView gridView;
 
     public static int isEditEntry = 0;
     public static String fileName;
-    static String full_path;
     public static String recordName;
     @SuppressLint("StaticFieldLeak")
-    static SearchView srch;
+    static SearchView searchView;
     int numOfColumns = 0;
     ArrayAdapter<String> adapter;
     static String finalOutText;
-    public static int importPosition = 0;
 
     //Theme Attributes/Fields/vars
     public static String Theme = "";
     public static String fileForTheme = "";
-    public static int NumberofNotes;
+    public static int notesNumber;
 
     //Theme Attributes/Fields/vars
     public static String fingerprint = "";
@@ -81,12 +78,9 @@ public class MainActivity extends AppCompatActivity  {
     public static boolean FINGERPRINT_TRANSACTION = false;
     public static boolean DISABLE_FINGERPRINT = false;
     //Renaming note AlertDialog attribute
-    AlertDialog renameAlertdialog;
-
+    AlertDialog renameDialog;
     int shift = 0;
     public static boolean NoMoreTutorials = true;
-
-
 
     public void showToolTipWindow(View view, int ArrowDirection, String message) {
         if ( NoMoreTutorials ){
@@ -98,10 +92,10 @@ public class MainActivity extends AppCompatActivity  {
                         .arrowDirection(ArrowDirection)
                         .dismissOnOutsideTouch(true)
                         .animated(true)
-                        .arrowColor(getResources().getColor(R.color.fab_red_color))
+                        .arrowColor(getResources().getColor(R.color.fab_red_color,null))
                         .transparentOverlay(false)
                         .textColor(getColor(R.color.white))
-                        .backgroundColor(getResources().getColor(R.color.fab_red_color))
+                        .backgroundColor(getResources().getColor(R.color.fab_red_color,null))
                         .onDismissListener(tooltip1 -> {
                             tooltip1.dismiss();
                             ++shift;
@@ -113,7 +107,6 @@ public class MainActivity extends AppCompatActivity  {
                                 case 2:
                                     tooltip1.dismiss();
                                     showToolTipWindow(findViewById(R.id.search_bar), ArrowDrawable.LEFT, "Search your note");
-
                                     break;
                                 case 3:
                                     tooltip1.dismiss();
@@ -130,10 +123,6 @@ public class MainActivity extends AppCompatActivity  {
 
         }
     }
-
-
-
-
 
     //Methods/Functions
     @Override
@@ -155,9 +144,9 @@ public class MainActivity extends AppCompatActivity  {
 //        ReadFingerPrint();
         //check files in the Application Cache & Data Directory & fetch & Display Them onto my ArrayAdapter of my ListView/RecycleViewer
         fetch_FileNames(getApplicationContext().getFilesDir() + "/SPRecordings/Notes");
-        //defining the ArrayAdapter / subtitle & Maintitle
-        defineAdapter(mainTitle, subTitle);
-        //checking for columns data of gridview
+        //defining the ArrayAdapter / subtitle & MainTitle
+        defineAdapter();
+        //checking for columns data of gridView
         CheckColumnsViewData();
         //Running the SearchView & its Listeners + Animations
         SearchView();
@@ -172,14 +161,10 @@ public class MainActivity extends AppCompatActivity  {
 //                    PackageManager.DONT_KILL_APP);
 //        }
 
-
-        if(!firstStart){
-
-        }else {
+        if ( firstStart ){
             showToolTipWindow(findViewById(R.id.addbtn),ArrowDrawable.LEFT,"Add new Note");
         }
     }
-
 
 
     public void Make_Expansion_Dirs() {
@@ -304,23 +289,20 @@ public class MainActivity extends AppCompatActivity  {
 
     public void SearchView() {
         //Handling SearchView And SearchView Animation & Listeners
-        srch = findViewById(R.id.search_bar);
+        searchView = findViewById(R.id.search_bar);
         //SearchView open Listener
-        srch.setOnSearchClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //use animation w/ searchBar SearchView
-                Animation anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_scale_up);
-                //starting animation
-                srch.startAnimation(anim);
-            }
+        searchView.setOnSearchClickListener(v -> {
+            //use animation w/ searchBar SearchView
+            Animation anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_scale_up);
+            //starting animation
+            searchView.startAnimation(anim);
         });
 
 
         //SearchView onClose Listener
-        srch.setOnCloseListener(() -> {
+        searchView.setOnCloseListener(() -> {
             Animation anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
-            srch.startAnimation(anim);
+            searchView.startAnimation(anim);
 
             //Animation Listener w/ overridable methods
             anim.setAnimationListener(new Animation.AnimationListener() {
@@ -345,7 +327,7 @@ public class MainActivity extends AppCompatActivity  {
         });
 
 
-        srch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
 
@@ -354,7 +336,7 @@ public class MainActivity extends AppCompatActivity  {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                lsview.setAdapter(adapter);
+                gridView.setAdapter(adapter);
                 adapter.getFilter().filter(newText);
                 return false;
             }
@@ -383,45 +365,44 @@ public class MainActivity extends AppCompatActivity  {
         }
     }
 
-    //setting up Refreshing Layout & its Sytle & Refresh Listener & ListView ArrayAdapter updater
+    //setting up Refreshing Layout & its Style & Refresh Listener & ListView ArrayAdapter updater
     public void Refresh(){
         final PullRefreshLayout refreshLayout=findViewById(R.id.refreshLayout);
         refreshLayout.setRefreshStyle(PullRefreshLayout.STYLE_MATERIAL);
-        refreshLayout.setOnRefreshListener(() -> {
+        refreshLayout.setOnRefreshListener(() -> new CountDownTimer(1000, 100) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+            }
 
-             CountDownTimer synchronize=new CountDownTimer(1000,100) {
-                @Override
-                public void onTick(long millisUntilFinished) { }
-                @Override
-                public void onFinish() {
-                    //redefining the adapter leads to refreshing the layout view
-                    defineAdapter(mainTitle,subTitle);
-                    //set refreshing state to false
-                    refreshLayout.setRefreshing(false);
-                    //return true for the finger print to be able to refresh the state
-                    // w/o fingerprint page/activity being shown
-                    FINGERPRINT_TRANSACTION=true;
-                    //cancel the timer to restart the process
-                    this.cancel();
-                }
-            }.start();
-        });
+            @Override
+            public void onFinish() {
+                //redefining the adapter leads to refreshing the layout view
+                defineAdapter();
+                //set refreshing state to false
+                refreshLayout.setRefreshing(false);
+                //return true for the finger print to be able to refresh the state
+                // w/o fingerprint page/activity being shown
+                FINGERPRINT_TRANSACTION = true;
+                //cancel the timer to restart the process
+                this.cancel();
+            }
+        }.start());
 
     }
 
 
     //defining the ListView ArrayAdapter Method
     //-> fetching the mainTitle ArrayList data & subTitle ArrayList Data from fetch_FileNames(...) method to the ListView/RV Adapter
-    public void defineAdapter(ArrayList<String> mainText, final ArrayList<String> subText) {
+    public void defineAdapter() {
 
         //defining ListView ArrayAdapter Custom Instance/Object
         lsAdapter = new MainActivityListAdapter(this, mainTitle,subTitle);
         //Defining a normal/Standard ArrayAdapter Instance/Object for displaying the Search Results
         adapter=new ArrayAdapter<>(this,android.R.layout.simple_dropdown_item_1line,mainTitle);
         //Defining ListView Instance for that Specific id
-        lsview = findViewById(R.id.listFiles);
+        gridView = findViewById(R.id.listFiles);
         //setting up the CustomArrayAdapter to the list view Layout
-        lsview.setAdapter(lsAdapter);
+        gridView.setAdapter(lsAdapter);
         //Running the refresh layout for displaying the Refresh Bar
         Refresh();
         //Defining ListView on item click listener for handling the 2nd Activity
@@ -429,7 +410,7 @@ public class MainActivity extends AppCompatActivity  {
         //Overriding an abstract method principle in java
 //-> onItemClick(....); is an abstract method(void having no body,but name & SemiColon) in OnItemClickListener() Interface
 // & in abstract class AdapterView & Must be Overridden to workout
-        lsview.setOnItemClickListener((parent, view, position, id) -> {
+        gridView.setOnItemClickListener((parent, view, position, id) -> {
             //Starting the EditPaneActivity activity/Intent from this Intent(Context)
             startActivity(new Intent(getApplicationContext(), EditPaneActivity.class));
             //Transition Animation
@@ -464,7 +445,7 @@ public class MainActivity extends AppCompatActivity  {
 
         //Defining ListView on item long click listener for handling the delete Note(w/ delete all its data & record) Action
         //-> Handling the delete of the previously Created Notes(Your already created Notes)
-        lsview.setOnItemLongClickListener((parent, view, position, id) -> {
+        gridView.setOnItemLongClickListener((parent, view, position, id) -> {
             //set The Message for that Builder(Hint!!!-> Revise getters & setters in java)
             //abstraction & Interfaces Applied
             builder.setMessage("Are you Sure you want to delete this item ?")
@@ -480,6 +461,7 @@ public class MainActivity extends AppCompatActivity  {
                                 File[] todoNotes = todoNoteDir.listFiles();
                                 for (File todoNote : todoNotes) {
                                     isDeleted = todoNote.delete();
+                                    out.println(isDeleted);
                                 }
                             }catch (NullPointerException ex){
                                 System.err.println(ex.getMessage());
@@ -548,6 +530,7 @@ public class MainActivity extends AppCompatActivity  {
         AlertDialog.Builder builder =
                 new AlertDialog.Builder(this);
         final LayoutInflater inflater = this.getLayoutInflater();
+        @SuppressLint("InflateParams")
         final View layout = inflater.inflate(R.layout.dialogboxlayout, null);
         Button okBtn = layout.findViewById(R.id.okBtn);
         Button cancelBtn = layout.findViewById(R.id.CancelBtn);
@@ -584,7 +567,7 @@ public class MainActivity extends AppCompatActivity  {
                 }
             }
             //Dismiss that dialog after data transactions are completed
-            renameAlertdialog.dismiss();
+            renameDialog.dismiss();
             //refresh by restarting the Application Activity
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
             finish();
@@ -592,18 +575,13 @@ public class MainActivity extends AppCompatActivity  {
         });
 
         //cancel btn dismiss the dialog w/o data change(w/o Rename action)
-        cancelBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                renameAlertdialog.dismiss();
-            }
-        });
+        cancelBtn.setOnClickListener(v -> renameDialog.dismiss());
 
         builder.setCancelable(true);
-        renameAlertdialog= builder.create();
-        Objects.requireNonNull(renameAlertdialog.getWindow()).setGravity(Gravity.CENTER);
-        renameAlertdialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation2;
-        renameAlertdialog.show();
+        renameDialog = builder.create();
+        Objects.requireNonNull(renameDialog.getWindow()).setGravity(Gravity.CENTER);
+        renameDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation2;
+        renameDialog.show();
 
 
     }
@@ -650,42 +628,35 @@ public class MainActivity extends AppCompatActivity  {
             File[] files = new File(path).listFiles();
             //using foreach/for loop to list all files(We Prefer for loop to control the iteration purpose)
             for (File file : files) {
-                //adding the files to the ArrayList mainTitle to fetch them onto the lsAdapter(ArrayAdpter of listView)
+                //adding the files to the ArrayList mainTitle to fetch them onto the lsAdapter(ArrayAdapter of listView)
                 mainTitle.add(file.getName());
                 //using java date/time utility library to call the last modification of these files shown onto the adapter
-                Date d = new Date(file.lastModified());
+                Date lastDate = new Date(file.lastModified());
                 //adding the last modification date to these items onto the adapter as a subTitle Text
-                subTitle.add(String.valueOf(d.toLocaleString()));
+                subTitle.add(String.valueOf(DateFormat.getInstance().format(lastDate)));
 
             }
-
-            NumberofNotes=files.length+1;
-
+            notesNumber =files.length+1;
         } catch (NullPointerException | IndexOutOfBoundsException e) {
             //printing the stackError into the Logcat(There are many other ways to do so)
             e.printStackTrace();
             //if you open the program brand new (there's zero notes there)
-            NumberofNotes=1;
+            notesNumber =1;
         }
     }
 
     //method for adding a new note
-    // -> has a view for the addNewNote Btn onClickListener -> called in the activity_main.xml in the onClick Tag of the addbtn floating button
-    public void addnewNote(View view) {
-
-
-                //starting the secondActivity(EditPaneActivity.java) from this Intent
-                startActivity(new Intent(getApplicationContext(), EditPaneActivity.class));
-                //Transition Animation
-                overridePendingTransition(R.anim.slide_in_activity,R.anim.slide_out_activity);
-                //finishing that activity to prevent overlapping of activities & errors in data write/read
-                finish();
-                //giving the triggerEdit a zero value -> trigger the second Activity(EditPaneActivity.java) to open a new note
-                isEditEntry = 0;
-
+    // -> has a view for the addNewNote Btn onClickListener -> called in the activity_main.xml in the onClick Tag of the addBtn floating button
+    public void addNewNote(View view) {
+            //starting the secondActivity(EditPaneActivity.java) from this Intent
+            startActivity(new Intent(getApplicationContext(), EditPaneActivity.class));
+            //Transition Animation
+            overridePendingTransition(R.anim.slide_in_activity,R.anim.slide_out_activity);
+            //finishing that activity to prevent overlapping of activities & errors in data write/read
+            finish();
+            //giving the triggerEdit a zero value -> trigger the second Activity(EditPaneActivity.java) to open a new note
+            isEditEntry = 0;
     }
-
-
 
     //method for the custom AlertDialog that ve been made for the 3 dot btn to display the settings & the about
     public void settingsAlert() {
@@ -696,10 +667,10 @@ public class MainActivity extends AppCompatActivity  {
         //Deep:- final is a keyword -> Immutable & accessing data from an inner class (View class)
         final LayoutInflater inflater = this.getLayoutInflater();
         //defining a View instance/obj & inflating the custom layout
+        @SuppressLint("InflateParams")
         final View layout = inflater.inflate(R.layout.alrtbox_items_menu, null);
         //setting that badBoy(view)to the current builder
         builder.setView(layout);
-
 
         //defining a button and fetching the btn id
         Button about = layout.findViewById(R.id.about);
@@ -729,7 +700,7 @@ public class MainActivity extends AppCompatActivity  {
         //creating an alertDialog instance and adding it to the builder
         AlertDialog alert = builder.create();
         //setting the window gravity to bottom
-        alert.getWindow().setGravity(Gravity.BOTTOM);
+        Objects.requireNonNull(alert.getWindow()).setGravity(Gravity.BOTTOM);
         //running the animations on the alertDialog from styles.xml
         alert.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation1;
         //showing that alertDialog
@@ -771,10 +742,10 @@ public class MainActivity extends AppCompatActivity  {
     public void readNumOfColumns() {
         try {
             //BufferedReader Instance & FileReader Parsing
-            BufferedReader Breader = new BufferedReader(new FileReader(getApplicationContext().getFilesDir()+"/SPRecordings/config"+
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(getApplicationContext().getFilesDir()+"/SPRecordings/config"+
                     "column"));
             //reading the 1st Line  -> in a String
-            String numString = Breader.readLine();
+            String numString = bufferedReader.readLine();
             //Converting the String into an Integer
             // -> so we can use it in setNumColumns() when we call it in the onCreate() method via the CheckColumnsViewData() method
             numOfColumns = Integer.parseInt(numString);
@@ -785,19 +756,19 @@ public class MainActivity extends AppCompatActivity  {
 
 
     //method for changing the gridView Columns depending on its current State
-    // ---> used in the ChangeGridBtn(View view) (gridbtn onClickListner)
+    // ---> used in the ChangeGridBtn(View view) (gridBtn onClickListener)
     public void ChangeColumnsViewData() {
         //checking if the number of columns is 1
         // -> Then set it to 2 -> write new data -> auto update view
-        if ( lsview.getNumColumns() == 1 ){
-            lsview.setNumColumns(2);
+        if ( gridView.getNumColumns() == 1 ){
+            gridView.setNumColumns(2);
             writeNumOfColumns(2);
         }
 
         //checking if the number of columns is 2
         // -> Then set it to 1 -> write new data -> auto update view
-        else if ( lsview.getNumColumns() == 2 ){
-            lsview.setNumColumns(1);
+        else if ( gridView.getNumColumns() == 2 ){
+            gridView.setNumColumns(1);
             writeNumOfColumns(1);
         }
     }
@@ -806,7 +777,7 @@ public class MainActivity extends AppCompatActivity  {
     public void CheckColumnsViewData() {
         try {
             readNumOfColumns();
-            lsview.setNumColumns(numOfColumns);
+            gridView.setNumColumns(numOfColumns);
         } catch (Exception e) {
             e.printStackTrace();
         }

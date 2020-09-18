@@ -47,9 +47,9 @@ import static com.scrappers.notepadsnippet.MainScreens.EditPaneActivity.recordSe
 import static com.scrappers.notepadsnippet.MainScreens.EditPaneActivity.recordSecondsString;
 import static com.scrappers.notepadsnippet.MainScreens.EditPaneActivity.record_duration_txt;
 import static com.scrappers.notepadsnippet.MainScreens.EditPaneActivity.recordingNow;
-import static com.scrappers.notepadsnippet.MainScreens.MainActivity.NumberofNotes;
 import static com.scrappers.notepadsnippet.MainScreens.MainActivity.fileName;
 import static com.scrappers.notepadsnippet.MainScreens.MainActivity.isEditEntry;
+import static com.scrappers.notepadsnippet.MainScreens.MainActivity.notesNumber;
 import static com.scrappers.notepadsnippet.MainScreens.MainActivity.recordName;
 
 public class recorder {
@@ -275,9 +275,9 @@ public class recorder {
                     isEditEntry = 1;
                     saveDialog.dismiss();
                 } else {
-                    path = context.getFilesDir() + "/SPRecordings/Notes/" +"Note "+(NumberofNotes);
+                    path = context.getFilesDir() + "/SPRecordings/Notes/" +"Note "+(notesNumber);
                     new saveNote(context).writeTextFiles(path, noteBox.getHtml()==null?"":noteBox.getHtml());
-                    recordName = getExternalStorageDirectory() + "/SPRecordings/records/" + "Note "+(NumberofNotes)+".mp3";
+                    recordName = getExternalStorageDirectory() + "/SPRecordings/records/" + "Note "+(notesNumber)+".mp3";
                     DefineNewRecord(recordName);
                     isEditEntry =1;
                     saveDialog.dismiss();
