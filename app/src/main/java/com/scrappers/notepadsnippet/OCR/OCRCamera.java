@@ -8,7 +8,9 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.google.mlkit.vision.barcode.Barcode;
 import com.google.mlkit.vision.barcode.BarcodeScanner;
@@ -19,10 +21,17 @@ import com.google.mlkit.vision.text.TextRecognition;
 import com.google.mlkit.vision.text.TextRecognizer;
 import com.scrappers.notepadsnippet.R;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import jp.wasabeef.richeditor.RichEditor;
 
@@ -39,14 +48,15 @@ public class OCRCamera extends Fragment {
     private static final int SCAN_BARCODE = 3 ;
 
     private RichEditor editTextPanel;
-
+    private AppCompatActivity context;
 
     /**
      * Create an OCR camera Fragment to choose between Camera Quick Shoot & PhotoLibrary
      * @param editTextPanel the editText where the extracted text goes
      */
-    public OCRCamera(RichEditor editTextPanel){
+    public OCRCamera(RichEditor editTextPanel, AppCompatActivity context){
         this.editTextPanel=editTextPanel;
+        this.context=context;
     }
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,6 +68,32 @@ public class OCRCamera extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.ocrcamera_fragment,container,false);
 
+        /*
+         *Define OCR Guide
+         */
+        LinearLayout ocrGuide=view.findViewById(R.id.ocrGuide);
+        if(readOCRGuideState(context.getFilesDir()+"/SPRecordings/config/ocrGuideState.state")){
+            ocrGuide.setVisibility(View.INVISIBLE);
+        }else{
+            ocrGuide.setVisibility(View.VISIBLE);
+        }        /*
+         * Close OCR Guide
+         */
+        ImageView closeOCrGuide=view.findViewById(R.id.closeOCRGuide);
+        closeOCrGuide.setOnClickListener(v -> ocrGuide.setVisibility(View.INVISIBLE));
+        /*
+         * Define Never Show again checkBox
+         */
+        CheckBox dismissGuideForever=view.findViewById(R.id.dismissGuideForever);
+        dismissGuideForever.setChecked(readOCRGuideState(context.getFilesDir()+"/SPRecordings/config/ocrGuideState.state"));
+
+        dismissGuideForever.setOnClickListener(v->{
+            if(((CheckBox)v).isChecked()){
+                saveOCRGuideState(context.getFilesDir()+"/SPRecordings/config/ocrGuideState.state",true);
+            }else if(!((CheckBox)v).isChecked()){
+                saveOCRGuideState(context.getFilesDir()+"/SPRecordings/config/ocrGuideState.state",false);
+            }
+        });
         /*
          * Camera Intent
          */
@@ -90,7 +126,26 @@ public class OCRCamera extends Fragment {
          */
         ImageView closeOcrFrag=view.findViewById(R.id.closeOcrFrag);
         closeOcrFrag.setOnClickListener(v -> ocrCameraFragmentLayout.setVisibility(View.INVISIBLE));
+
         return view;
+    }
+
+    private void saveOCRGuideState(String file,boolean data){
+        try(BufferedWriter bufferedWriter=new BufferedWriter(new FileWriter(new File(file)))){
+            bufferedWriter.write(String.valueOf(data));
+        }catch (IOException | NullPointerException ex){
+            System.err.println(ex.getMessage());
+        }
+    }
+
+    private boolean readOCRGuideState(String file){
+        try(BufferedReader bufferedReader=new BufferedReader(new FileReader(new File(file)))){
+            return Boolean.parseBoolean(bufferedReader.readLine());
+        }catch (IOException | NullPointerException ex){
+            System.err.println(ex.getMessage());
+            return Boolean.parseBoolean("false");
+        }
+
     }
 
     @Override

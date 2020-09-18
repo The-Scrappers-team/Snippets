@@ -1,7 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_gravity="start|bottom">
+    <LinearLayout
+        android:id="@+id/ocrGuide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible">
+    <LinearLayout
+        android:layout_width="148dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/rounded_verse_bckgrond"
+        android:layout_marginHorizontal="12dp"
+        android:padding="8dp"
+        >
+        <ImageButton
+            android:id="@+id/closeOCRGuide"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/closefrag"
+            android:background="@color/transparent"
+            android:tint="@color/red_slide_icons"
+            android:layout_gravity="right"
+            android:padding="0dp"
+            android:scaleType="centerCrop"
+            android:focusable="true"
+            android:clickable="true"
+            />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:src="@drawable/phone"
+            android:rotation="270"
+            android:tint="@color/colorAccent"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Capture the pic in LandScape"
+            android:textSize="14sp"
+            android:textColor="@color/colorAccent"
+            android:padding="8dp"/>
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/dismissGuideForever"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don't Remind"
+            android:textColor="@color/colorAccent"
+            android:buttonTint="@color/colorAccent"
+            android:textSize="14sp"
+            android:padding="8dp"
+            />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="145dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_drop_down_white_32dp"
+        android:layout_gravity="start"
+        android:layout_marginHorizontal="12dp"
+        android:scaleX="1.7"
+        android:scaleY="1.7"
+        android:backgroundTint="@color/colorAccent"
+        android:paddingVertical="0dp"
+        android:tint="?attr/textcolor"
+        android:paddingHorizontal="12dp"
+        />
+    </LinearLayout>
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+<LinearLayout
     android:orientation="horizontal"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -13,29 +88,28 @@
     android:layout_gravity="bottom"
     app:layout_anchorGravity="bottom"
    >
-
-    <ImageView
-        android:id="@+id/cameraIntent"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@drawable/ic_camera_black_24dp"
-        android:backgroundTint="@color/text_black"
-        android:tooltipText="Take a new Shoot !"
-        android:layout_marginEnd="15dp"
-        tools:targetApi="o" />
     <ImageView
         android:id="@+id/openDocIntent"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:background="@drawable/filemanager"
         android:backgroundTint="@color/text_black"
         android:tooltipText="Open Photo Library !"
         android:layout_marginEnd="15dp"
         tools:targetApi="o" />
     <ImageView
+        android:id="@+id/cameraIntent"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/ic_camera_black_24dp"
+        android:backgroundTint="@color/text_black"
+        android:tooltipText="Take a new Shoot !"
+        android:layout_marginEnd="15dp"
+        tools:targetApi="o" />
+    <ImageView
         android:id="@+id/barcodeReader"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:background="@drawable/qrcode_scan"
         android:backgroundTint="@color/text_black"
         android:tooltipText="Scan a barcode!"
@@ -43,11 +117,13 @@
         tools:targetApi="o" />
     <ImageView
         android:id="@+id/closeOcrFrag"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:background="@drawable/closefrag"
         android:tooltipText="Close"
         android:backgroundTint="@color/red_slide_icons"
         tools:targetApi="o" />
 
+</LinearLayout>
+    </HorizontalScrollView>
 </LinearLayout>

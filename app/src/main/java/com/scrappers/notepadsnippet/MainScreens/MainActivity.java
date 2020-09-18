@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -192,6 +191,7 @@ public class MainActivity extends AppCompatActivity  {
                 getApplicationContext().getFilesDir()+"/SPRecordings/adapter_database",
                 getApplicationContext().getFilesDir()+"/SPRecordings/images",
                 getApplicationContext().getFilesDir()+"/SPRecordings/fingerprint",
+                getApplicationContext().getFilesDir()+"/SPRecordings/config",
                 getExternalStorageDirectory() + "/SPRecordings",
                 getExternalStorageDirectory() +  "/SPRecordings/records",
                 getExternalStorageDirectory() +  "/SPRecordings/paints"};
@@ -755,12 +755,12 @@ public class MainActivity extends AppCompatActivity  {
     public void writeNumOfColumns(int data) {
         try {
             //making a new BufferedWriter Instance & parsing a new FileWriter w/ the path for the number of columns
-            BufferedWriter Bwriter = new BufferedWriter(new FileWriter(getApplicationContext().getFilesDir() + "/SPRecordings/adapter_database/" +
+            BufferedWriter BWriter = new BufferedWriter(new FileWriter(getApplicationContext().getFilesDir()+"/SPRecordings/config"+
                     "column"));
             //writing data to the file
-            Bwriter.write(String.valueOf(data));
+            BWriter.write(String.valueOf(data));
             //close to save & Buffer/update cache
-            Bwriter.close();
+            BWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -771,7 +771,7 @@ public class MainActivity extends AppCompatActivity  {
     public void readNumOfColumns() {
         try {
             //BufferedReader Instance & FileReader Parsing
-            BufferedReader Breader = new BufferedReader(new FileReader(getApplicationContext().getFilesDir() + "/SPRecordings/adapter_database/" +
+            BufferedReader Breader = new BufferedReader(new FileReader(getApplicationContext().getFilesDir()+"/SPRecordings/config"+
                     "column"));
             //reading the 1st Line  -> in a String
             String numString = Breader.readLine();

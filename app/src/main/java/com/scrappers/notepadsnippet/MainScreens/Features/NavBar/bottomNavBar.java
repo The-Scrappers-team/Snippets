@@ -103,7 +103,7 @@ public class bottomNavBar {
         ocr.setOnClickListener(v ->{
                     navBar.dismiss();
                     FragmentTransaction fragmentTransaction=context.getSupportFragmentManager().beginTransaction();
-                    OCRCamera ocrCamera =new OCRCamera(noteBox);
+                    OCRCamera ocrCamera =new OCRCamera(noteBox,context);
                     fragmentTransaction.replace(R.id.ocrChooser,ocrCamera);
                     fragmentTransaction.commit();
                     ocrCameraFragmentLayout=context.findViewById(R.id.ocrChooser);
