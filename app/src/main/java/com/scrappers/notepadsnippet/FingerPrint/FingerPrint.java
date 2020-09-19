@@ -95,11 +95,11 @@ public class FingerPrint extends AppCompatActivity {
             setTheme(R.style.GreenTheme);
         }else if(Theme.contains("AppTheme")){
             setTheme(R.style.AppTheme);
-        }else if(Theme.contains("GrayScaleTheme")){
+        }else if(Theme.contains("Darky")){
             setTheme(R.style.Darky);
-        }else if(Theme.contains("TitanTheme")){
+        }else if(Theme.contains("orangeLover")){
             setTheme(R.style.orangeLover);
-        }else if(Theme.contains("CyanTheme")){
+        }else if(Theme.contains("BlueDark")){
             setTheme(R.style.BlueDark);
         }
     }

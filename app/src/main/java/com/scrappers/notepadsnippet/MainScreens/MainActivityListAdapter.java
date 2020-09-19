@@ -8,62 +8,50 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
-import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.scrappers.notepadsnippet.R;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
 public class MainActivityListAdapter extends ArrayAdapter<String> {
 
-    private Activity context;
-    private ArrayList<String> mainTitle;
-    private ArrayList<String> subTitle;
+    private final Activity context;
+    private final ArrayList<String> mainTitle;
+    private final ArrayList<String> subTitle;
 
-    @SuppressLint("StaticFieldLeak")
-    static  TextView Subtxtview;
-
-    @SuppressLint("StaticFieldLeak")
-    static TextView Maintxtview;
-    @SuppressLint("StaticFieldLeak")
-    static CheckBox checkbox;
-
-    /// wooohooo warning critical fatal warning >>>this is the constructor should be the same name as the class name
-    public MainActivityListAdapter(Activity context, ArrayList<String> maintitle, ArrayList<String> subtitle) {
-        super(context, R.layout.custom_list_xml, maintitle);
+    MainActivityListAdapter(Activity context, ArrayList<String> mainTitle, ArrayList<String> subTitle) {
+        super(context, R.layout.custom_list_xml, mainTitle);
         // TODO Auto-generated constructor stub
-
         this.context = context;
-        this.mainTitle = maintitle;
-        this.subTitle = subtitle;
-
-
-
+        this.mainTitle = mainTitle;
+        this.subTitle = subTitle;
     }
 
+    @NotNull
     @Override
-    public View getView(final int position, View view, ViewGroup parent) {
+    public View getView(final int position, View view, @NotNull ViewGroup parent) {
         //define the layout inflater & the view to inflate a custom layout from a xml layout file
         LayoutInflater inflater = context.getLayoutInflater();
+        @SuppressLint({"ViewHolder", "InflateParams"})
         final View rowView = inflater.inflate(R.layout.custom_list_xml, null, true);
 
         //define your components
 
-         Maintxtview=rowView.findViewById(R.id.mainTitleTxt);
-         Subtxtview=rowView.findViewById(R.id.subTitleTxt);
+        TextView mainTxtView = rowView.findViewById(R.id.mainTitleTxt);
+        TextView subTxtView = rowView.findViewById(R.id.subTitleTxt);
 
 
-        Maintxtview.setText(mainTitle.get(position));
+        mainTxtView.setText(mainTitle.get(position));
 
-        Subtxtview.setText(subTitle.get(position));
+        subTxtView.setText(subTitle.get(position));
 
 
         //List View Animation
         Animation animation = AnimationUtils.loadAnimation(context,R.anim.fade_in);
         rowView.startAnimation(animation);
-
 
         //finish your function by returning the custom view layout
         return rowView;

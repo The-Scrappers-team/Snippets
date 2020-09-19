@@ -50,6 +50,7 @@ import static android.view.View.TEXT_DIRECTION_LOCALE;
 import static com.scrappers.notepadsnippet.FeaturesShowUp.SliderActivity.firstStart;
 import static com.scrappers.notepadsnippet.MainScreens.MainActivity.DISABLE_FINGERPRINT;
 import static com.scrappers.notepadsnippet.MainScreens.MainActivity.Theme;
+import static com.scrappers.notepadsnippet.MainScreens.MainActivity.fileForTheme;
 import static com.scrappers.notepadsnippet.MainScreens.MainActivity.finalOutText;
 import static com.scrappers.notepadsnippet.MainScreens.MainActivity.isEditEntry;
 import static com.scrappers.notepadsnippet.MainScreens.MainActivity.recordName;
@@ -126,7 +127,7 @@ public  class EditPaneActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //read theme & Apply it
-        ReadTheme();
+        readTheme();
         super.onCreate(savedInstanceState);
         //set layout view
         setContentView(R.layout.activity_edit_pane);
@@ -185,7 +186,7 @@ public  class EditPaneActivity extends AppCompatActivity {
                 //setting up the RichEditor preferences -> B/I/U/Undo/Redo/etc
                 prepareNoteBox();
                 //themes the noteBox synchronously according to the user's theme
-                themeNoteBox();
+                themeNoteBox(checkTheme(getApplicationContext().getFilesDir()+ "/SPRecordings/config/" +"Theme.scrappers"));
                 //listening for buttons
                 prepareToolBarListener();
                 //progress dialog dismiss after components load up
@@ -196,6 +197,19 @@ public  class EditPaneActivity extends AppCompatActivity {
             }
         }.start();
 
+    }
+
+    private String checkTheme(String file){
+        try(BufferedReader bufferedReader=new BufferedReader(new FileReader(new File(file)))){
+            if(bufferedReader.ready()){
+                return bufferedReader.readLine();
+            }else{
+                return "";
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
+        }
     }
 
     private void prepareNoteBox(){
@@ -215,17 +229,17 @@ public  class EditPaneActivity extends AppCompatActivity {
     }
 
 
-    private void themeNoteBox(){
+    private void themeNoteBox(String currentTheme){
         //check for themes & apply different preferences
-        if ( Theme.contains("GrayScaleTheme") || Theme.contains("CyanTheme") ){
+        if ( currentTheme.contains("Darky") || currentTheme.contains("BlueDark") ){
             noteBox.setEditorFontColor(Color.WHITE);
             noteBox.setEditorWidth(22);
             noteBox.setBackgroundColor(getResources().getColor(R.color.colorAccent,null));
-        } else if ( Theme.contains("AppTheme") ){
+        } else if ( currentTheme.contains("AppTheme") ){
             noteBox.setBackgroundColor(getResources().getColor(R.color.cornysilk,null));
-        } else if ( Theme.contains("GreenTheme") ){
+        } else if ( currentTheme.contains("GreenTheme") ){
             noteBox.setBackgroundColor(getResources().getColor(R.color.fade_white,null));
-        }else if(Theme.length()<=0){
+        }else if(currentTheme.length()<=0){
             noteBox.setBackgroundColor(getResources().getColor(R.color.cornysilk,null));
         }
     }
@@ -317,18 +331,30 @@ public  class EditPaneActivity extends AppCompatActivity {
     }
 
 
-    private void ReadTheme(){
-        //applying themes according to the content
-        if(Theme.contains("GreenTheme")){
-            setTheme(R.style.GreenTheme);
-        }else if(Theme.contains("AppTheme")){
-            setTheme(R.style.AppTheme);
-        }else if(Theme.contains("GrayScaleTheme")){
-            setTheme(R.style.Darky);
-        }else if(Theme.contains("TitanTheme")){
-            setTheme(R.style.orangeLover);
-        }else if(Theme.contains("CyanTheme")){
-            setTheme(R.style.BlueDark);
+    public void readTheme() {
+        try {
+            //read themes in that file
+            BufferedReader br = new BufferedReader(new FileReader(fileForTheme));
+            if ( br.ready() ){
+                //reading first line of that db file
+                Theme = br.readLine();
+                //applying themes according to the content
+                if(Theme.contains("GreenTheme")){
+                    setTheme(R.style.GreenTheme);
+                }else if(Theme.contains("AppTheme")){
+                    setTheme(R.style.AppTheme);
+                }else if(Theme.contains("Darky")){
+                    setTheme(R.style.Darky);
+                }else if(Theme.contains("orangeLover")){
+                    setTheme(R.style.orangeLover);
+                }else if(Theme.contains("BlueDark")){
+                    setTheme(R.style.BlueDark);
+                }
+                //close the BR
+                br.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

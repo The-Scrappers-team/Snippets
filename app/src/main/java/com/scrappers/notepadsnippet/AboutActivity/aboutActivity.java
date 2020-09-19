@@ -12,18 +12,24 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
-import com.scrappers.notepadsnippet.MainScreens.MainActivity;
 import com.scrappers.notepadsnippet.R;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+
+import static com.scrappers.notepadsnippet.MainScreens.MainActivity.Theme;
+import static com.scrappers.notepadsnippet.MainScreens.MainActivity.fileForTheme;
 
 public class aboutActivity extends AppCompatActivity{
 
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        ReadTheme();
+        readTheme();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
         //Call request Portrait Orientation
@@ -38,13 +44,30 @@ public class aboutActivity extends AppCompatActivity{
     /**
      * Read the current theme database & apply it to the activity
      */
-    public void ReadTheme(){
-        if(MainActivity.Theme.contains("GreenTheme")){
-            setTheme(R.style.GreenTheme);
-        }else if( MainActivity.Theme.contains("AppTheme")){
-            setTheme(R.style.AppTheme);
-        }else if(MainActivity.Theme.contains("GrayScaleTheme")){
-            setTheme(R.style.Darky);
+    public void readTheme() {
+        try {
+            //read themes in that file
+            BufferedReader br = new BufferedReader(new FileReader(fileForTheme));
+            if ( br.ready() ){
+                //reading first line of that db file
+                Theme = br.readLine();
+                //applying themes according to the content
+                if(Theme.contains("GreenTheme")){
+                    setTheme(R.style.GreenTheme);
+                }else if(Theme.contains("AppTheme")){
+                    setTheme(R.style.AppTheme);
+                }else if(Theme.contains("Darky")){
+                    setTheme(R.style.Darky);
+                }else if(Theme.contains("orangeLover")){
+                    setTheme(R.style.orangeLover);
+                }else if(Theme.contains("BlueDark")){
+                    setTheme(R.style.BlueDark);
+                }
+                //close the BR
+                br.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

@@ -170,16 +170,16 @@ public class MainActivity extends AppCompatActivity  {
     public void Make_Expansion_Dirs() {
         boolean isDirReady;
         String[] dirs={
-                getApplicationContext().getFilesDir() + "/" + "SPRecordings",
-                getApplicationContext().getFilesDir() + "/" + "SPRecordings/Notes",
+                getApplicationContext().getFilesDir() +  "/SPRecordings",
+                getApplicationContext().getFilesDir() +  "/SPRecordings/Notes",
                 getApplicationContext().getFilesDir() +  "/SPRecordings/todoLists",
-                getApplicationContext().getFilesDir()+"/SPRecordings/adapter_database",
-                getApplicationContext().getFilesDir()+"/SPRecordings/images",
                 getApplicationContext().getFilesDir()+"/SPRecordings/fingerprint",
                 getApplicationContext().getFilesDir()+"/SPRecordings/config",
                 getExternalStorageDirectory() + "/SPRecordings",
                 getExternalStorageDirectory() +  "/SPRecordings/records",
-                getExternalStorageDirectory() +  "/SPRecordings/paints"};
+                getExternalStorageDirectory() +  "/SPRecordings/paints",
+                getExternalStorageDirectory() + "/SPRecordings/Backup"
+        };
 
         for(String dir : dirs) {
             //make new dirs
@@ -215,10 +215,10 @@ public class MainActivity extends AppCompatActivity  {
     }
 
     //Reads the theme from the file directory && Applies it
-    public void ReadTheme() {
+    private void ReadTheme() {
         try {
             //themes directory & themes files w/ scrappers extension :->))
-            fileForTheme= (getApplicationContext().getFilesDir()+ "/SPRecordings/adapter_database/" +"Theme.scrappers");
+            fileForTheme= (getApplicationContext().getFilesDir()+ "/SPRecordings/config/" +"Theme.scrappers");
             //read themes in that file
             BufferedReader br = new BufferedReader(new FileReader(fileForTheme));
             if ( br.ready() ){
@@ -229,11 +229,11 @@ public class MainActivity extends AppCompatActivity  {
                     setTheme(R.style.GreenTheme);
                 }else if(Theme.contains("AppTheme")){
                     setTheme(R.style.AppTheme);
-                }else if(Theme.contains("GrayScaleTheme")){
+                }else if(Theme.contains("Darky")){
                     setTheme(R.style.Darky);
-                }else if(Theme.contains("TitanTheme")){
+                }else if(Theme.contains("orangeLover")){
                     setTheme(R.style.orangeLover);
-                }else if(Theme.contains("CyanTheme")){
+                }else if(Theme.contains("BlueDark")){
                     setTheme(R.style.BlueDark);
                 }
                 //close the BR

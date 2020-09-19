@@ -25,7 +25,10 @@ import android.widget.Toast;
 import com.github.clans.fab.FloatingActionButton;
 import com.scrappers.notepadsnippet.R;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -34,6 +37,7 @@ import androidx.fragment.app.FragmentTransaction;
 import static com.github.clans.fab.FloatingActionButton.SIZE_MINI;
 import static com.github.clans.fab.FloatingActionButton.SIZE_NORMAL;
 import static com.scrappers.notepadsnippet.MainScreens.MainActivity.Theme;
+import static com.scrappers.notepadsnippet.MainScreens.MainActivity.fileForTheme;
 import static com.scrappers.notepadsnippet.MainScreens.MainActivity.fileName;
 import static com.scrappers.notepadsnippet.Paint.PaintView.DEFAULT_BG_COLOR;
 
@@ -48,7 +52,7 @@ public class Paint extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        ReadTheme();
+        readTheme();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paint);
         /*Assign an instance fo the paint Canvas*/
@@ -168,20 +172,30 @@ public class Paint extends AppCompatActivity {
 
     }
 
-
-
-    public void ReadTheme(){
-        //applying themes according to the content
-        if(Theme.contains("GreenTheme")){
-            setTheme(R.style.GreenTheme);
-        }else if(Theme.contains("AppTheme")){
-            setTheme(R.style.AppTheme);
-        }else if(Theme.contains("GrayScaleTheme")){
-            setTheme(R.style.Darky);
-        }else if(Theme.contains("TitanTheme")){
-            setTheme(R.style.orangeLover);
-        }else if(Theme.contains("CyanTheme")){
-            setTheme(R.style.BlueDark);
+    public void readTheme() {
+        try {
+            //read themes in that file
+            BufferedReader br = new BufferedReader(new FileReader(fileForTheme));
+            if ( br.ready() ){
+                //reading first line of that db file
+                Theme = br.readLine();
+                //applying themes according to the content
+                if(Theme.contains("GreenTheme")){
+                    setTheme(R.style.GreenTheme);
+                }else if(Theme.contains("AppTheme")){
+                    setTheme(R.style.AppTheme);
+                }else if(Theme.contains("Darky")){
+                    setTheme(R.style.Darky);
+                }else if(Theme.contains("orangeLover")){
+                    setTheme(R.style.orangeLover);
+                }else if(Theme.contains("BlueDark")){
+                    setTheme(R.style.BlueDark);
+                }
+                //close the BR
+                br.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
