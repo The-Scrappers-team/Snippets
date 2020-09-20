@@ -13,13 +13,14 @@ import android.widget.TextView;
 import com.scrappers.notepadsnippet.R;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.PagerAdapter;
 
 public class SliderAdapter extends PagerAdapter {
 
-    private Context context;
+    private final AppCompatActivity context;
 
-    SliderAdapter(Context context){
+    SliderAdapter(AppCompatActivity context){
         this.context = context;
     }
     //Arrays
@@ -27,7 +28,11 @@ public class SliderAdapter extends PagerAdapter {
             R.drawable.write_paper_ink_icon,
             R.drawable.themes,
             R.drawable.download_monitor,
-            R.drawable.todo_icon, R.drawable.record_player_icon,
+            R.drawable.todo_icon,
+            R.drawable.record_player_icon,
+            R.drawable.camera_slider,
+            R.drawable.qrcode_slider,
+            R.drawable.ic_palette_black_24dp,
             R.drawable.ic_settings_black_24dp,
             R.drawable.ic_fingerprint_black_24dp
     };
@@ -36,7 +41,11 @@ public class SliderAdapter extends PagerAdapter {
             "Hello !",
             "Themes",
             "BackUp",
-            "To-Do List",  "Recording",
+            "To-Do List",
+            "Recording",
+            "Text Recognition",
+            "BarCode Reader",
+            "Paint",
             "Customizations",
             "Built-in Security"
     };
@@ -47,6 +56,9 @@ public class SliderAdapter extends PagerAdapter {
             "Backup your data and format your phone and then restore them like nothing had happened.",
             "Snippet is not just a Notebook -with many typography Features- but also a todo list that carries your tasks.",
             "Long Lectures and meetings can be recorded, even if the screen is off, to record whatever you want, save your battery, record efficiently.",
+            "Optical Camera Character Feature(OCR) provides Text Recognition onBoard,\nSo you can now extract text from any Image",
+            "Optical Camera Character Feature(OCR) provides QR/BarCode Reader onBoard,\nSo you can now extract data from any QR/BarCode",
+            "Every Note Holds a paint file,\nNow you can release the artist insides you :-)",
             "A lot of Features depend on quality or styles so Snippet gives you the access to customize them in settings.",
             "No need for extra lock apps, \nSnippet gives you a Security to your precious information with a fingerprint lock, the same one you have on your lock screen."
     };

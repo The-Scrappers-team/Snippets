@@ -1,6 +1,5 @@
 package com.scrappers.notepadsnippet.MainScreens.Features.TextNotes;
 
-import android.content.Context;
 import android.speech.tts.TextToSpeech;
 import android.text.Html;
 import android.util.Log;
@@ -8,18 +7,20 @@ import android.view.View;
 
 import java.util.Locale;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import static com.scrappers.notepadsnippet.MainScreens.EditPaneActivity.SPEAK_STATE;
 import static com.scrappers.notepadsnippet.MainScreens.EditPaneActivity.noteBox;
 
 public class speakNote implements View.OnClickListener {
-    private Context context;
+    private final AppCompatActivity context;
     private TextToSpeech ttsEngine;
 
     /**
      * adds a speak notes listener to speak the noteBox
      * @param context the context of the holding class
      */
-    public speakNote(Context context) {
+    public speakNote(AppCompatActivity context) {
         this.context=context;
     }
     @Override
@@ -39,7 +40,7 @@ public class speakNote implements View.OnClickListener {
                             } else {
                                 //tts Engine on
                                 try {
-                                    ttsEngine.speak(String.valueOf(Html.fromHtml(noteBox.getHtml())), TextToSpeech.QUEUE_FLUSH, null,null);
+                                    ttsEngine.speak(String.valueOf(Html.fromHtml(noteBox.getHtml(),0)), TextToSpeech.QUEUE_FLUSH, null,null);
                                 } catch (NullPointerException e) {
                                     e.printStackTrace();
                                 }

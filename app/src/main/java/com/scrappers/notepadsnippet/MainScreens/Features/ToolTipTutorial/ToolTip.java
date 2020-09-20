@@ -52,7 +52,7 @@ public class ToolTip {
                                     break;
                                 case 2:
                                     thisToolTip.dismiss();
-                                    showToolTipWindow(context.findViewById(R.id.openNavBarBtn), ArrowDrawable.RIGHT, "Hold & Swipe Right \n" +
+                                    showToolTipWindow(context.findViewById(R.id.openNavBarBtn), ArrowDrawable.RIGHT, "Open Bottom NavBar \n" +
                                             "Speak note,TodoList,Paint,OCR\n");
 
                                     break;

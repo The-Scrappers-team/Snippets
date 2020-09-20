@@ -1,8 +1,5 @@
 package com.scrappers.notepadsnippet.FeaturesShowUp;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,6 +11,9 @@ import android.widget.TextView;
 
 import com.scrappers.notepadsnippet.MainScreens.MainActivity;
 import com.scrappers.notepadsnippet.R;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 import static com.scrappers.notepadsnippet.FeaturesShowUp.SliderAdapter.slide_images;
 
@@ -76,7 +76,6 @@ public class SliderActivity extends AppCompatActivity {
                     turn_All_Dots_To_Transparent_White();
                     //then set the current positioned dot to white color
                     DotsOnTxtView[position].setTextColor(getResources().getColor(R.color.white,null));
-
                     //now if you have reached the end of pages(last index) then set the finish btn to visible
                     //but if you ve returned back then set it to Invisible
                     if(position==DotsOnTxtView.length-1){
@@ -109,14 +108,12 @@ public class SliderActivity extends AppCompatActivity {
     }
 
     public void addDotsIndicator(int NUMBER_OF_DOTS) {
-
         //define a textView array given its Length the parameter -->NUMBER_OF_DOTS
         DotsOnTxtView = new TextView[NUMBER_OF_DOTS];
-
         //add dots from zero to NUMBER_OF_DOTS using their HTML code &#8226 & setting their size to 35
             for (int i = 0; i < NUMBER_OF_DOTS; i++) {
                 DotsOnTxtView[i] = new TextView(this);
-                DotsOnTxtView[i].setText(Html.fromHtml(SHAPE_DOTS));
+                DotsOnTxtView[i].setText(Html.fromHtml(SHAPE_DOTS,0));
                 DotsOnTxtView[i].setTextSize(35);
                 //set the first dot to white at the beginning before reaching the PageChanger Listener
                 if(i==0){
@@ -127,8 +124,6 @@ public class SliderActivity extends AppCompatActivity {
                 //add each dot the LinearLayout DotsLayout predefined in activity_slider.xml file
                 DotsLayout.addView(DotsOnTxtView[i]);
             }
-
-
     }
 
 

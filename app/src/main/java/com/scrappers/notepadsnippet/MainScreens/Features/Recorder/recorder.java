@@ -186,11 +186,9 @@ public class recorder {
                 /*
                  * get Duration of the recorded media
                  */
-                String out = "";
                 long dur = playRecord.getDuration();
                 String seconds = String.valueOf((dur % 60000) / 1000);
                 String minutes = String.valueOf(dur / 60000);
-                out = minutes + ":" + seconds;
                 if ( seconds.length() == 1 ){
                     mediaDuration.setText(String.format("0%s:0%s", minutes, seconds));
                 } else {

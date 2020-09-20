@@ -28,7 +28,7 @@ import static com.scrappers.notepadsnippet.MainScreens.MainActivity.isEditEntry;
 
 public class bottomNavBar {
 
-    private AppCompatActivity context;
+    private final AppCompatActivity context;
     private AlertDialog navBar;
 
     /**
@@ -56,7 +56,7 @@ public class bottomNavBar {
         builder.setCancelable(true);
         //create it
         navBar = builder.create();
-        //Dialog background ,by doing this you are making the background as a blacklight space(The Versa is the dimmed background)
+        //Dialog background ,by doing this you are making the background as a blackLight space(The Versa is the dimmed background)
         Objects.requireNonNull(navBar.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
         //Dialog gravity
         navBar.getWindow().setGravity(Gravity.BOTTOM);

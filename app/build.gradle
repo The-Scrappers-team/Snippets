@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId "com.scrappers.notepadpp"
-        minSdkVersion 23
+        minSdkVersion 25
         targetSdkVersion 28
         versionCode 4
         versionName "4.1.1"
@@ -30,12 +30,12 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.appcompat:appcompat:1.2.0-beta01'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.appcompat:appcompat:1.3.0-alpha02'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.3.0-beta01'
-    implementation 'com.google.android.material:material:1.1.0'
+    testImplementation 'junit:junit:4.13'
+    androidTestImplementation 'androidx.test:runner:1.3.0'
+    implementation 'com.google.android.material:material:1.2.1'
     implementation 'com.github.clans:fab:1.6.4'
     implementation 'com.github.Trendyol:BubbleScrollBar:0.1'
     implementation 'com.miguelcatalan:materialsearchview:1.4.0'

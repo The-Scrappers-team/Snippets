@@ -5,7 +5,6 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.Gravity;
@@ -85,41 +84,39 @@ public class MainActivity extends AppCompatActivity  {
     public void showToolTipWindow(View view, int ArrowDirection, String message) {
         if ( NoMoreTutorials ){
             SimpleTooltip.Builder tooltip = new SimpleTooltip.Builder(this);
-            if ( Build.VERSION.SDK_INT >= Build.VERSION_CODES.M ){
-                tooltip.anchorView(view)
-                        .text(message)
-                        .gravity(Gravity.END)
-                        .arrowDirection(ArrowDirection)
-                        .dismissOnOutsideTouch(true)
-                        .animated(true)
-                        .arrowColor(getResources().getColor(R.color.fab_red_color,null))
-                        .transparentOverlay(false)
-                        .textColor(getColor(R.color.white))
-                        .backgroundColor(getResources().getColor(R.color.fab_red_color,null))
-                        .onDismissListener(tooltip1 -> {
-                            tooltip1.dismiss();
-                            ++shift;
-                            switch (shift) {
-                                case 1:
-                                    tooltip1.dismiss();
-                                    showToolTipWindow(findViewById(R.id.settings), ArrowDrawable.RIGHT, "Dashboard");
-                                    break;
-                                case 2:
-                                    tooltip1.dismiss();
-                                    showToolTipWindow(findViewById(R.id.search_bar), ArrowDrawable.LEFT, "Search your note");
-                                    break;
-                                case 3:
-                                    tooltip1.dismiss();
-                                    showToolTipWindow(findViewById(R.id.listFiles), ArrowDrawable.LEFT, "Your Notes");
-                                    break;
-                                default:
-                                    tooltip1.dismiss();
-                                    break;
-                            }
-                        })
-                        .build()
-                        .show();
-            }
+            tooltip.anchorView(view)
+                    .text(message)
+                    .gravity(Gravity.END)
+                    .arrowDirection(ArrowDirection)
+                    .dismissOnOutsideTouch(true)
+                    .animated(true)
+                    .arrowColor(getResources().getColor(R.color.fab_red_color,null))
+                    .transparentOverlay(false)
+                    .textColor(getColor(R.color.white))
+                    .backgroundColor(getResources().getColor(R.color.fab_red_color,null))
+                    .onDismissListener(tooltip1 -> {
+                        tooltip1.dismiss();
+                        ++shift;
+                        switch (shift) {
+                            case 1:
+                                tooltip1.dismiss();
+                                showToolTipWindow(findViewById(R.id.settings), ArrowDrawable.RIGHT, "Dashboard");
+                                break;
+                            case 2:
+                                tooltip1.dismiss();
+                                showToolTipWindow(findViewById(R.id.search_bar), ArrowDrawable.LEFT, "Search your note");
+                                break;
+                            case 3:
+                                tooltip1.dismiss();
+                                showToolTipWindow(findViewById(R.id.listFiles), ArrowDrawable.LEFT, "Your Notes");
+                                break;
+                            default:
+                                tooltip1.dismiss();
+                                break;
+                        }
+                    })
+                    .build()
+                    .show();
 
         }
     }
@@ -360,7 +357,8 @@ public class MainActivity extends AppCompatActivity  {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if(requestCode==REQUEST_READ_WRITE){
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if ( requestCode == REQUEST_READ_WRITE ){
             Make_Expansion_Dirs();
         }
     }

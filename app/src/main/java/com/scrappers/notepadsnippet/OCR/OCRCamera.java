@@ -1,5 +1,6 @@
 package com.scrappers.notepadsnippet.OCR;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -148,37 +149,31 @@ public class OCRCamera extends Fragment {
 
     }
 
+    /**
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode){
-            case CAMERA_CAPTURE_OCR:
-                try {
+        if(resultCode == Activity.RESULT_OK ){
+            switch (requestCode) {
+                case CAMERA_CAPTURE_OCR:
                     assert data != null;
                     runTextRecognition((Bitmap) Objects.requireNonNull(data.getExtras()).get("data"), editTextPanel);
-                }catch (NullPointerException ex){
-                    System.err.println(ex.getMessage());
-                }
-                break;
-            case DOC_OCR:
-                try {
+                    break;
+                case DOC_OCR:
                     assert data != null;
                     runTextRecognition(BitmapFactory.decodeFile(getExternalStorageDirectory() + "/" + Objects.requireNonNull(Objects.requireNonNull(data.getData()).getPath()).substring(Objects.requireNonNull(data.getData().getPath()).indexOf(":") + 1)),
                             editTextPanel);
-                }catch (NullPointerException ex){
-                    System.err.println(ex.getMessage());
-                }
-
-                break;
-            case SCAN_BARCODE:
-                try{
-                    assert data !=null;
-                    runBarCodeScanner((Bitmap) Objects.requireNonNull(data.getExtras()).get("data"),editTextPanel);
-                }catch (NullPointerException ex){
-                    System.err.println(ex.getMessage());
-                }
-            default:
-                break;
+                    break;
+                case SCAN_BARCODE:
+                    assert data != null;
+                    runBarCodeScanner((Bitmap) Objects.requireNonNull(data.getExtras()).get("data"), editTextPanel);
+                default:
+                    break;
+            }
         }
     }
 

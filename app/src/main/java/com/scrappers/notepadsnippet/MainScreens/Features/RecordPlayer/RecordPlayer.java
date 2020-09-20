@@ -1,5 +1,6 @@
 package com.scrappers.notepadsnippet.MainScreens.Features.RecordPlayer;
 
+import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.SeekBar;
@@ -7,7 +8,6 @@ import android.widget.TextView;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
-import com.scrappers.notepadsnippet.MainScreens.EditPaneActivity;
 import com.scrappers.notepadsnippet.MainScreens.Features.Recorder.recorder;
 import com.scrappers.notepadsnippet.R;
 
@@ -22,7 +22,7 @@ import static com.scrappers.notepadsnippet.MainScreens.EditPaneActivity.stopSimu
 
 public class RecordPlayer {
     private View fabView;
-    private AppCompatActivity context;
+    private final AppCompatActivity context;
     private FloatingActionButton playRecordFab;
     private FloatingActionButton pauseRecord;
     private SeekBar mediaSeekBar;
@@ -120,13 +120,14 @@ public class RecordPlayer {
         });
     }
 
+    @SuppressLint("SetTextI18n")
     private void getCurrentProgressOfPlayMedia() {
 
         //explanations are in todo getDurationOfPlayMedia() method
         long dur = playRecord.getCurrentPosition()/ 1000; //convert it into seconds
         String seconds = String.valueOf((dur % 60)); // get the number of whats before 60 secs
         String minutes = String.valueOf((dur % 3600) / 60); //get the number of whats before 3600 secs(1 hr) & convert it into hrs
-        String hours= String.valueOf(dur/3600);//get the hrs & take off points of percision(decimals)
+        String hours= String.valueOf(dur/3600);//get the hrs & take off points of precision(decimals)
 
         if ( seconds.length() == 1 ){
             seconds="0"+seconds;
@@ -137,10 +138,11 @@ public class RecordPlayer {
         if(hours.length() == 1){
             hours="0"+hours;
         }
-        mediaCurrentProgress.setText(hours+":"+minutes + ":" + seconds);
+        mediaCurrentProgress.setText(hours + ":" + minutes + ":" + seconds);
     }
 
 
+    @SuppressLint("SetTextI18n")
     private void getDurationOfPlayMedia() {
         // get mp3 duration
         long dur = playRecord.getDuration();
@@ -148,17 +150,17 @@ public class RecordPlayer {
         //preRequirements:-
         //Quotient Remainder(The quotient remainder theorem) :
         // R=firstNum-[secondNum*QuotientResult] from the main operation: firstNum= (secondNum * Q )+ R ; where 0 ≤ R < B
-        // (NB:QuotientResult must be floored to a wholde number , so if Q=0.0005 then it would be 0 , if Q=2.5 then Q=2 not 3)
-        //A= B * Q + R  is the breakdown of any multiplication operation in our life , but usually R is zero so we denoted idiotly as A=B*Q w/o R
+        // (NB:QuotientResult must be floored to a whole number , so if Q=0.0005 then it would be 0 , if Q=2.5 then Q=2 not 3)
+        //A= B * Q + R  is the breakdown of any multiplication operation in our life , but usually R is zero so we denoted idiocy as A=B*Q w/o R
         // 1 ms= 1/1,000 sec
         // 1 ms = (1/1,000 sec) / 60 = 1/60,000 mins
         // 1 ms = (1/60,000 mins) /60 = 1/3600,000 hrs
         //equations formulas
-        //-->  uint(second) = (duration % (its limit converted from millisecond (60,000 as its the begining of mins))  / Conversion constant(1000 for secs )
+        //-->  unit(second) = (duration % (its limit converted from millisecond (60,000 as its the beginning of mins))  / Conversion constant(1000 for secs )
         //procedure:-
         //beginning by numbers that would produce zero for the seconds(time below seconds)
         //recall dur = 30 ms -> seconds = (30 % 60,000) = remainder=firstNum-[secondNum*QuotientResult]=30-[60,000*0]= 30 (NB:- QuotientResult=0.0005 floored to 0)
-        // -> divide by Conversion constant(1000 in this case) = 30/1000 =0.03 fraction still presist -> variable floored & returns zero
+        // -> divide by Conversion constant(1000 in this case) = 30/1000 =0.03 fraction still persist -> variable floored & returns zero
         //these operations will go all the way till we reach the 1 real second
 
         //when we reach 1 sec
@@ -199,16 +201,16 @@ public class RecordPlayer {
         //then mins counter continue counting
 
         String seconds = String.valueOf((dur % 60000) / 1000);
-        //-->  uint(minutes) = (duration % (its limit converted from millisecond  (3600,000 as its the begining of hrs))  / Conversion constant(60,000 for mins )
+        //-->  unit(minutes) = (duration % (its limit converted from millisecond  (3600,000 as its the beginning of hrs))  / Conversion constant(60,000 for mins )
         String minutes = String.valueOf((dur % 3600000) / 60000);
-        //-->  uint(hrs) = (duration / 3600,000) to convert the uints to hours if present above the value 3600,000 & if its below then it would be decimal & therefore its a partial hour(immature) not fully mature
+        //-->  unit(hrs) = (duration / 3600,000) to convert the units to hours if present above the value 3600,000 & if its below then it would be decimal & therefore its a partial hour(immature) not fully mature
         String hours= String.valueOf(dur/3600000);
 
         //or
 //        long dur = playRecord.getDuration()/ 1000; //convert it into seconds
 //        String seconds = String.valueOf((dur % 60)); // get the number of whats before 60 secs
 //        String minutes = String.valueOf((dur % 3600) / 60); //get the number of whats before 3600 secs(1 hr) & convert it into hrs
-//        String hours= String.valueOf(dur/3600);//get the hrs & take off points of percision(decimals)
+//        String hours= String.valueOf(dur/3600);//get the hrs & take off points of precision(decimals)
 
         //or
 //        long dur = playRecord.getCurrentPosition();

@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 import com.scrappers.notepadsnippet.App;
 import com.scrappers.notepadsnippet.R;
@@ -30,7 +31,7 @@ public class todoListSetup {
     /**
      * Attributes
      */
-    private AppCompatActivity context;
+    private final AppCompatActivity context;
     private AlertDialog saveDialog;
     private ArrayList<String> dynamicList =new ArrayList<>();
     private TodoNoteAdapter todoNoteAdapter;
@@ -98,18 +99,23 @@ public class todoListSetup {
     }
 
     private void removeTodoList(View layoutView) {
-        File file=new File(App.getContext().getFilesDir() +  "/SPRecordings/todoLists/"+fileName+"/");
-        //delete all files in the path individually
-        File[] files =file.listFiles();
-        for (File value : files) {
-            //remove each file ( resembles todoNote ) individually
-            out.println(deleteFile(value));
+        try {
+            File file = new File(App.getContext().getFilesDir() + "/SPRecordings/todoLists/" + fileName + "/");
+            //delete all files in the path individually
+            File[] files = file.listFiles();
+            for (File value : files) {
+                //remove each file ( resembles todoNote ) individually
+                out.println(deleteFile(value));
+            }
+            //remove data from adapter and clear it
+            dynamicList.clear();
+            //apply the changes to the adapter
+            todoNoteAdapter.notifyDataSetChanged();
+            Snackbar.make(layoutView, fileName + " TodoList is deleted Successfully", Snackbar.LENGTH_LONG).show();
+        }catch (NullPointerException e){
+            e.printStackTrace();
+            Snackbar.make(layoutView,"No Todo Tasks to delete", BaseTransientBottomBar.LENGTH_LONG).show();
         }
-        //remove data from adapter and clear it
-        dynamicList.clear();
-        //apply the changes to the adapter
-        todoNoteAdapter.notifyDataSetChanged();
-        Snackbar.make(layoutView,fileName+" TodoList is deleted Successfully",Snackbar.LENGTH_LONG).show();
     }
 
 

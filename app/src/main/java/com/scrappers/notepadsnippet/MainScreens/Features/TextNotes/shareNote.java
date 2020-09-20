@@ -12,7 +12,7 @@ import static com.scrappers.notepadsnippet.MainScreens.EditPaneActivity.noteBox;
 import static com.scrappers.notepadsnippet.MainScreens.MainActivity.recordName;
 
 public class shareNote {
-    private AppCompatActivity context;
+    private final AppCompatActivity context;
     public shareNote(AppCompatActivity context) {
         this.context=context;
     }
@@ -30,7 +30,7 @@ public class shareNote {
                         Intent shareIntentNote = new Intent(Intent.ACTION_SEND);
                         shareIntentNote.setType("text/plain");
                         shareIntentNote.putExtra(Intent.EXTRA_SUBJECT, "Share Note");
-                        shareIntentNote.putExtra(Intent.EXTRA_TEXT, String.valueOf(Html.fromHtml(noteBox.getHtml())));
+                        shareIntentNote.putExtra(Intent.EXTRA_TEXT, String.valueOf(Html.fromHtml(noteBox.getHtml(),0)));
                         context.startActivity(Intent.createChooser(shareIntentNote, "Share File"));
                     }catch (NullPointerException error){
                         error.printStackTrace();

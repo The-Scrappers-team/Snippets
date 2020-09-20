@@ -4,7 +4,6 @@ import android.Manifest;
 import android.app.KeyguardManager;
 import android.content.pm.PackageManager;
 import android.hardware.fingerprint.FingerprintManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyProperties;
@@ -39,52 +38,50 @@ public class FingerPrint extends AppCompatActivity {
         setContentView(R.layout.activity_finger_print);
 
 
-        if ( Build.VERSION.SDK_INT >= Build.VERSION_CODES.M ){
-            //Get an instance of KeyguardManager and FingerprintManager//
-            KeyguardManager keyguardManager = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
-            FingerprintManager fingerprintManager = (FingerprintManager) getSystemService(FINGERPRINT_SERVICE);
+        //Get an instance of KeyguardManager and FingerprintManager//
+        KeyguardManager keyguardManager = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
+        FingerprintManager fingerprintManager = (FingerprintManager) getSystemService(FINGERPRINT_SERVICE);
 
-            TextView textView = findViewById(R.id.textview);
+        TextView textView = findViewById(R.id.textview);
 
-            //Check whether the device has a fingerprint sensor//
-            if ( !fingerprintManager.isHardwareDetected() ){
-                // If a fingerprint sensor isn’t available, then inform the user that they’ll be unable to use your app’s fingerprint functionality//
-                textView.setText(R.string.deviceNotSupported);
+        //Check whether the device has a fingerprint sensor//
+        if ( !fingerprintManager.isHardwareDetected() ){
+            // If a fingerprint sensor isn’t available, then inform the user that they’ll be unable to use your app’s fingerprint functionality//
+            textView.setText(R.string.deviceNotSupported);
+        }
+        //Check whether the user has granted your app the USE_FINGERPRINT permission//
+        if ( ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.USE_FINGERPRINT) != PackageManager.PERMISSION_GRANTED ){
+            // If your app doesn't have this permission, then display the following text//
+            textView.setText(R.string.enableWarning);
+        }
+
+        //Check that the user has registered at least one fingerprint//
+        if ( !fingerprintManager.hasEnrolledFingerprints() ){
+            // If the user has n’t configured any fingerprints, then display the following message//
+            textView.setText(R.string.noF);
+        }
+
+        //Check that the lockScreen is secured//
+        if ( !keyguardManager.isKeyguardSecure() ){
+            // If the user has n’t secured their lockScreen with a PIN password or pattern, then display the following text//
+            textView.setText(R.string.enableFingerPrintInSettings);
+        } else {
+            try {
+                generateKey();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            //Check whether the user has granted your app the USE_FINGERPRINT permission//
-            if ( ActivityCompat.checkSelfPermission(this,
-                    Manifest.permission.USE_FINGERPRINT) != PackageManager.PERMISSION_GRANTED ){
-                // If your app doesn't have this permission, then display the following text//
-                textView.setText(R.string.enableWarning);
-            }
 
-            //Check that the user has registered at least one fingerprint//
-            if ( !fingerprintManager.hasEnrolledFingerprints() ){
-                // If the user has n’t configured any fingerprints, then display the following message//
-                textView.setText(R.string.noF);
-            }
+            if ( initCipher() ){
+                //If the cipher is initialized successfully, then create a CryptoObject instance//
+                FingerprintManager.CryptoObject cryptoObject = new FingerprintManager.CryptoObject(cipher);
 
-            //Check that the lockScreen is secured//
-            if ( !keyguardManager.isKeyguardSecure() ){
-                // If the user has n’t secured their lockScreen with a PIN password or pattern, then display the following text//
-                textView.setText(R.string.enableFingerPrintInSettings);
-            } else {
-                try {
-                    generateKey();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                // Here, I’m referencing the FingerprintHandler class that we’ll create in the next section. This class will be responsible
+                // for starting the authentication process (via the startAuth method) and processing the authentication process events//
+                FingerPrintHandler helper = new FingerPrintHandler(this);
+                helper.startAuth(fingerprintManager, cryptoObject);
 
-                if ( initCipher() ){
-                    //If the cipher is initialized successfully, then create a CryptoObject instance//
-                    FingerprintManager.CryptoObject cryptoObject = new FingerprintManager.CryptoObject(cipher);
-
-                    // Here, I’m referencing the FingerprintHandler class that we’ll create in the next section. This class will be responsible
-                    // for starting the authentication process (via the startAuth method) and processing the authentication process events//
-                    FingerPrintHandler helper = new FingerPrintHandler(this);
-                    helper.startAuth(fingerprintManager, cryptoObject);
-
-                }
             }
         }
     }
@@ -145,21 +142,19 @@ public class FingerPrint extends AppCompatActivity {
             keyStore.load(null);
 
             //Initialize the KeyGenerator//
-            if ( Build.VERSION.SDK_INT >= Build.VERSION_CODES.M ){
-                keyGenerator.init(new
+            keyGenerator.init(new
 
-                        //Specify the operation(s) this key can be used for//
-                        KeyGenParameterSpec.Builder(KEY_NAME,
-                        KeyProperties.PURPOSE_ENCRYPT |
-                                KeyProperties.PURPOSE_DECRYPT)
-                        .setBlockModes(KeyProperties.BLOCK_MODE_CBC)
+                    //Specify the operation(s) this key can be used for//
+                    KeyGenParameterSpec.Builder(KEY_NAME,
+                    KeyProperties.PURPOSE_ENCRYPT |
+                            KeyProperties.PURPOSE_DECRYPT)
+                    .setBlockModes(KeyProperties.BLOCK_MODE_CBC)
 
-                        //Configure this key so that the user has to confirm their identity with a fingerprint each time they want to use it//
-                        .setUserAuthenticationRequired(true)
-                        .setEncryptionPaddings(
-                                KeyProperties.ENCRYPTION_PADDING_PKCS7)
-                        .build());
-            }
+                    //Configure this key so that the user has to confirm their identity with a fingerprint each time they want to use it//
+                    .setUserAuthenticationRequired(true)
+                    .setEncryptionPaddings(
+                            KeyProperties.ENCRYPTION_PADDING_PKCS7)
+                    .build());
 
             //Generate the key//
             keyGenerator.generateKey();

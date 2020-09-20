@@ -2,6 +2,7 @@ package com.scrappers.notepadsnippet.MainScreens;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -119,9 +120,6 @@ public  class EditPaneActivity extends AppCompatActivity {
     @SuppressLint("StaticFieldLeak")
     public static FrameLayout ocrCameraFragmentLayout;
     private View playRecordView;
-
-
-
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -427,17 +425,18 @@ public  class EditPaneActivity extends AppCompatActivity {
         return data.toString();
     }
 
+
     //Activity Request Listener for handling the open of ACTION_OPEN_DOCUMENT Intent
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if ( requestCode == INSERT_IMAGE_ACTION ){
+        if ( requestCode == INSERT_IMAGE_ACTION && resultCode== Activity.RESULT_OK ){
             //Image Scaling related ->>>>
             assert data.getDataString()!=null;
             //Inset img as <img> html tag vi the RichEditor
             noteBox.insertImage(data.getDataString(),
                     "");
-        }else if(requestCode == TEXT_FILE_ACTION){
+        }else if(requestCode == TEXT_FILE_ACTION && resultCode== Activity.RESULT_OK){
             assert Objects.requireNonNull(data.getData()).getPath()!=null;
             String path=data.getData().getPath();
             assert path != null;
@@ -448,10 +447,11 @@ public  class EditPaneActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if(requestCode==ACCESS_MIC_PERMISSION){
-           new recorder(this,null, pauseRecordingFab, mediaSeekBar, mediaDuration, mediaCurrentProgress).record();
-        }else if(requestCode==PLAY_RECORD){
-            RecordPlayer recordPlayer = new RecordPlayer(this,playRecordView,playRecordFab,pauseRecordingFab, mediaSeekBar, mediaDuration, mediaCurrentProgress);
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if ( requestCode == ACCESS_MIC_PERMISSION  ){
+            new recorder(this, null, pauseRecordingFab, mediaSeekBar, mediaDuration, mediaCurrentProgress).record();
+        } else if ( requestCode == PLAY_RECORD ){
+            RecordPlayer recordPlayer = new RecordPlayer(this, playRecordView, playRecordFab, pauseRecordingFab, mediaSeekBar, mediaDuration, mediaCurrentProgress);
             recordPlayer.setOnCompletedMediaListener();
             recordPlayer.play();
         }

@@ -29,7 +29,7 @@ public class deleteNoteRecord {
     /**
      * attributes
      */
-    private AppCompatActivity context;
+    private final AppCompatActivity context;
     private MediaPlayer currentPlayingRecord;
     private SeekBar mediaSeekBar;
     private TextView duration;
@@ -75,7 +75,7 @@ public class deleteNoteRecord {
                     if(recordFile.exists()){
                         deleted=recordFile.delete();
                         stopSimulate=!deleted;
-                        //because there might be a malicious fail to hide those components if they arenot really present ,so we can catch those errors seperatly to prevent failure of deletion
+                        //because there might be a malicious fail to hide those components if they aren't really present ,so we can catch those errors seperatly to prevent failure of deletion
                         currentPlayingRecord.stop();
                         currentPlayingRecord.release();
                         hideMediaComponents();
@@ -109,9 +109,11 @@ public class deleteNoteRecord {
      * @param dialog the AlertDialog to dismiss
      */
     private void Dismiss_Dialog_Box(final AlertDialog dialog){
-        CountDownTimer ctd=new CountDownTimer(1000,100) {
+        new CountDownTimer(1000, 100) {
             @Override
-            public void onTick(long millisUntilFinished) { }
+            public void onTick(long millisUntilFinished) {
+            }
+
             @Override
             public void onFinish() {
                 dialog.dismiss();
